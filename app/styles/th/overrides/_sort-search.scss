@@ -1,0 +1,9 @@
+.vn-sort-desktop-search {
+	margin-top: 34px;
+	text-align: right;
+
+	.dropdown-menu {
+		@extend .dropdown-menu-right;
+		text-align: right;
+	}
+}

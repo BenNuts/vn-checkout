@@ -1,0 +1,11 @@
+.vn-showcase {
+	@extend %backface-visibility;
+	position         : relative;
+	z-index          : 2;
+	background-color : $body-bg;
+
+	@include respond-to(md-and-up) {
+		margin-top    : 20px;
+		margin-bottom : 20px;
+	}
+}

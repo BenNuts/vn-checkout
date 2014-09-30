@@ -1,0 +1,9 @@
+.th-header-top {
+	border-bottom : 1px solid lighten($navbar-default-border, 10);
+
+	&__text {
+		padding-top    : 10px;
+		padding-bottom : 10px;
+	}
+
+}

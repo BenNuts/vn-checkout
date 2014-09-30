@@ -11,9 +11,5 @@ angular.module('vnCheckoutApp')
 
 		'use strict';
 
-		$scope.awesomeThings = [
-			'HTML5 Boilerplate',
-			'AngularJS',
-			'Karma'
-		];
+		$scope.checkout = {};
 	});

@@ -1,0 +1,77 @@
+.th-reviews {
+	font-size  : 1.3rem;
+	margin-top : 15px;
+
+	ul.rating i { color : goldenrod }
+
+	a {
+		color  : lighten($text-color, 55);
+		margin : 0 4px;
+	}
+
+	&__heading {
+		font-family    : $font-family-condensed-reg;
+		font-size      : 1.8rem;
+		overflow       : hidden;
+		margin-bottom  : 10px;
+		text-transform : uppercase;
+	}
+
+	&__description { line-height : 1.5 }
+
+	&__helpful {
+		color   : lighten($text-color, 55);
+		padding : 10px 0 0;
+	}
+
+	&__rating { padding : 10px 0 }
+
+	&__star-group {
+		display      : inline-block;
+		margin-right : 10px;
+
+		i { color : goldenrod }
+
+		p { margin : 0 }
+		// TODO fix: 'vn-rating-title' coming from somewhere causing margin issues
+	}
+
+	&__title {
+		font-family   : 'roboto-bold';
+		font-size     : 1.4rem;
+		font-weight   : normal;
+		margin-top    : 5px;
+		margin-bottom : 5px;
+	}
+
+	&__totals {
+		border   : 1px solid lighten($hr-border, 10);
+		overflow : hidden;
+		padding  : 15px;
+
+		&--right { margin-top : 10px }
+
+		@include respond-to(sm-and-up) {
+			&--left { float : left }
+			&--right { float : right }
+		}
+	}
+
+}
+
+.th-write-review {
+	padding : 10px 0;
+
+	ul.rating i { color : goldenrod }
+
+	a {
+		display         : block;
+		font-size       : 1.4rem;
+		padding         : 5px 0;
+		text-decoration : underline;
+
+		&:hover {
+			text-decoration : none;
+		}
+	}
+}

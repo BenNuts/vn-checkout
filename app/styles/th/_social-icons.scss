@@ -1,0 +1,24 @@
+.th-social {
+	clear      : both;
+	padding    : 10px 0;
+	text-align : center;
+
+	@include respond-to(md-and-up) {
+		text-align   : left;
+		padding-left : 12px;
+	}
+
+	&__icon {
+		@extend %inline-block;
+		margin : 0 2px;
+
+		@include respond-to(md-and-up) {
+			margin : 0px 6px 0px 0px;
+		}
+
+		&:hover {
+			@extend %animate-all-default;
+			@extend %opacity-80;
+		}
+	}
+}
