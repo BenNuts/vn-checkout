@@ -6,7 +6,7 @@
  * Controller of the vnCheckoutApp
  */
 angular.module('VolusionCheckout.controllers')
-	.controller('ShipToCtrl', ['$scope', 'vnCheckout', 'vnApi', 'vnUsStates', function ($scope, vnCheckout, vnApi, vnUsStates) {
+	.controller('ShipToCtrl', ['$scope', '$filter', 'vnCheckout', 'vnApi', 'vnUsStates', function ($scope, $filter, vnCheckout, vnApi, vnUsStates) {
 
 		'use strict';
 
@@ -27,13 +27,23 @@ angular.module('VolusionCheckout.controllers')
 			region    : '',
 			zip       : '',
 			postalcode: '',
-			country   : 'Unites States of America',
+			country   : 'Unites States',
 			phone     : ''
 		};
 
-		$scope.countries = vnApi.Country().query();
+		$scope.countries = [];
+		$scope.usStates = [];
 
-		$scope.usStates = vnUsStates.states;
+		vnApi.Country().query().$promise
+			.then(function (response) {
+				$scope.countries = response.data;
+
+				$scope.usStates = $filter('filter')($scope.countries, function (country) {
+					if (country.name === 'United States') {
+						return country;
+					}
+				})[0].states;
+			});
 
 		// TODO: initialize COUNTRY and CHECKOUT.LOCATION with the response from https://freegeoip.net
 		// DEFAULT: start with USofA
@@ -54,6 +64,6 @@ angular.module('VolusionCheckout.controllers')
 		};
 
 		$scope.onUsStateChanged = function (state) {
-			$scope.address.state = state.abbr;
+			$scope.address.state = state.code;
 		};
 	}]);
