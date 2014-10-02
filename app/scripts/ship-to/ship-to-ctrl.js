@@ -5,8 +5,8 @@
  * # ShipToCtrl
  * Controller of the vnCheckoutApp
  */
-angular.module('vnCheckoutApp')
-	.controller('ShipToCtrl', ['$scope', 'vnCheckout', 'vnCountries', 'vnUsStates', function ($scope, vnCheckout, vnCountries, vnUsStates) {
+angular.module('VolusionCheckout.controllers')
+	.controller('ShipToCtrl', ['$scope', 'vnCheckout', 'vnApi', 'vnUsStates', function ($scope, vnCheckout, vnApi, vnUsStates) {
 
 		'use strict';
 
@@ -31,7 +31,7 @@ angular.module('vnCheckoutApp')
 			phone     : ''
 		};
 
-		$scope.countries = vnCountries.countries;
+		$scope.countries = vnApi.Country().query();
 
 		$scope.usStates = vnUsStates.states;
 

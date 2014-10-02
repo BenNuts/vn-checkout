@@ -6,7 +6,7 @@
  * Controller of the vnCheckoutApp
  */
 
-angular.module('vnCheckoutApp')
+angular.module('VolusionCheckout.controllers')
 	.controller('CheckoutCtrl', ['$scope', 'vnCheckout', function ($scope, vnCheckout) {
 
 		'use strict';

@@ -5,7 +5,7 @@
  * # ShipMethodCtrl
  * Controller of the vnCheckoutApp
  */
-angular.module('vnCheckoutApp')
+angular.module('VolusionCheckout.controllers')
 	.controller('ShipMethodCtrl', function ($scope) {
 
 		'use strict';

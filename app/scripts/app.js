@@ -6,6 +6,11 @@
  *
  * Main module of the application.
  */
+
+angular.module('VolusionCheckout.templates', []);
+angular.module('VolusionCheckout.services', []);
+angular.module('VolusionCheckout.controllers', []);
+
 angular
 	.module('vnCheckoutApp', [
 		'ngAnimate',
@@ -17,7 +22,12 @@ angular
 
 		// Third party modules
 		'ui.bootstrap',
-		'pascalprecht.translate'
+		'pascalprecht.translate',
+
+		// Volusion modules
+		'Volusion.toolboxCommon',
+		'VolusionCheckout.controllers',
+		'VolusionCheckout.services'
 	])
 	.config(['$routeProvider', '$locationProvider',
 		function ($routeProvider, $locationProvider) {

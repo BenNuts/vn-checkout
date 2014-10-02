@@ -6,7 +6,7 @@
  * Factory in the vnCheckoutApp.
  */
 
-angular.module('vnCheckoutApp')
+angular.module('VolusionCheckout.services')
 	.factory('vnCheckout', function () {
 
 		'use strict';
