@@ -6,7 +6,7 @@
  * Controller of the vnCheckoutApp
  */
 angular.module('VolusionCheckout.controllers')
-	.controller('ShipToCtrl', ['$scope', '$filter', 'vnCheckout', 'vnApi', 'vnUsStates', function ($scope, $filter, vnCheckout, vnApi, vnUsStates) {
+	.controller('ShipToCtrl', ['$scope', '$filter', 'vnCheckout', 'vnApi', function ($scope, $filter, vnCheckout, vnApi) {
 
 		'use strict';
 
