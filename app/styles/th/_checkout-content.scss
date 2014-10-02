@@ -1,0 +1,72 @@
+
+.th-checkout-content {
+
+	.col-md-4 {
+		// reset padding so overlay will not shift
+		padding : 0;
+	}
+
+	.img-responsive {
+		margin : 0 auto;
+	}
+
+	.row {
+		// reset padding
+		padding : 0;
+	}
+}
+
+.th-checkout {
+	&__step {
+		height     : 530px;
+		border     : 1px solid $gray-light;
+		text-align : center;
+
+		&.-active {
+			border : none;
+
+			.th-checkout__step__overlay {
+				display : none;
+			}
+		}
+
+		&__overlay {
+			z-index          : 9999;
+			position         : absolute;
+			height           : 100%;
+			width            : 100%;
+			background-color : $gray;
+
+			@include opacity(0.2);
+		}
+
+		&__title {
+			text-align : center;
+		}
+
+	}
+
+	&__ship-to {
+		padding : 15px;
+
+		&__location {
+			text-align : center;
+			padding    : 10px;
+
+			img {
+				height : 20px;
+			}
+		}
+	}
+}
+
+@include respond-to(md-and-up) {
+	.th-checkout-content {
+	}
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@include respond-to(lg) {
+	.th-checkout-content {
+	}
+}

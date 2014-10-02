@@ -1,12 +1,35 @@
-<div class="container">
+<div class="container th-checkout-content">
 	<div class="row">
-		<div class="col-md-4">
-			 Step 1 Here
+		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[0].active }">
+			<div class="th-checkout__step__overlay"></div>
+			<div class="th-checkout__step__title">
+				<span data-ng-if="checkout.steps[0].active">1</span>
+				<span data-ng-if="!checkout.steps[0].active"><i class="fa fa-check-circle"></i></span>
+				<br />
+				<span>Ship To</span>
+			</div>
+
+			<div ng-include=" 'scripts/ship-to/ship-to.html' "></div>
+
+			<hr />
+
+			<div ng-include=" 'scripts/ship-method/ship-method.html' "></div>
+
+			<hr />
+
+			<button class="btn btn-primary" data-ng-click="nextStep()">Continue&nbsp;<i class="fa fa-angle-right"></i></button>
+
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[1].active }">
+			<div class="th-checkout__step__overlay"></div>
 			 Step 2 Here
+
+			<hr />
+
+			<button class="btn btn-primary" data-ng-click="prevStep()"><i class="fa fa-angle-left">&nbsp;Back</i></button>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[2].active }">
+			<div class="th-checkout__step__overlay"></div>
 			 Step 3 Here
 		</div>
 	</div>
