@@ -6,7 +6,7 @@
  * Controller of the vnCheckoutApp
  */
 angular.module('vnCheckoutApp')
-	.controller('ShipToCtrl', ['$scope', 'vnCheckout', function ($scope, vnCheckout) {
+	.controller('ShipToCtrl', ['$scope', 'vnCheckout', 'vnCountries', 'vnUsStates', function ($scope, vnCheckout, vnCountries, vnUsStates) {
 
 		'use strict';
 
@@ -27,15 +27,18 @@ angular.module('vnCheckoutApp')
 			region    : '',
 			zip       : '',
 			postalcode: '',
-			country   : '',
+			country   : 'Unites States of America',
 			phone     : ''
 		};
 
-		$scope.countries = [
-			{code:'us', label:'Unites States of America'},
-			{code:'bg', label:'Bulgaria'},
-			{code:'mx', label:'Mexico'}
-		];
+		$scope.countries = vnCountries.countries;
+
+		$scope.usStates = vnUsStates.states;
+
+		// TODO: initialize COUNTRY and CHECKOUT.LOCATION with the response from https://freegeoip.net
+		// DEFAULT: start with USofA
+
+		// *******************************************************************************************
 
 		$scope.isEditable = function () {
 			return ($scope.checkout.currentStep === SHIP_TO) ? 'edit' : 'show';
@@ -44,5 +47,13 @@ angular.module('vnCheckoutApp')
 		$scope.toggleLocation = function () {
 			vnCheckout.toggleLocation();
 			$scope.isLocationUS = ($scope.checkout.location.label === US) ? true : false;
+		};
+
+		$scope.onCountryChanged = function (country) {
+			$scope.address.country = country.name;
+		};
+
+		$scope.onUsStateChanged = function (state) {
+			$scope.address.state = state.abbr;
 		};
 	}]);

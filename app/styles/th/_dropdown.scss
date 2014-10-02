@@ -1,7 +1,20 @@
 .th-dropdown {
 
-	&-toggle {
-		margin-left : 5px;
-		margin-top  : -3px;
+	.dropdown-toggle {
+		width      : 100%;
+		text-align : left;
+
+		.caret {
+			position : absolute;
+			right    : 10px;
+			top      : 13px;
+		}
+	}
+
+	.dropdown-menu {
+		width      : 100%;
+		margin-top : 0;
+		height     : 150px;
+		overflow   : auto;
 	}
 }
