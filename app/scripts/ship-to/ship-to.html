@@ -9,13 +9,37 @@
 		<div class="col-xs-6" ng-switch-when="edit">
 			<div class="form-group">
 				<label class="control-label sr-only" for="inputShipToUSFirstName"></label>
-				<input type="text" id="inputShipToUSFirstName" class="form-control" placeholder="First Name" data-ng-model="address.fname"/>
+				<input type="text"
+					   id="inputShipToUSFirstName" class="form-control immediate-help"
+					   placeholder="First Name"
+					   data-ng-model="address.fname"
+					   data-first-name-validate required/>
+				<div class="input-help bottom">
+					<div class="arrow"></div>
+					<h4>First name must:</h4>
+					<ul>
+						<li ng-class="firstNameMinValidLength">Be at least <strong>1 letter long</strong></li>
+						<li ng-show="firstNameDisallowedChars != null" ng-class="firstNameAllowedChars" >Not contain <strong>{{ firstNameDisallowedChars.join("") }}</strong></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<div class="col-xs-6" ng-switch-when="edit">
 			<div class="form-group">
 				<label class="control-label sr-only" for="inputShipToUSLastName"></label>
-				<input type="text" id="inputShipToUSLastName" class="form-control" placeholder="Last Name" data-ng-model="address.lname"/>
+				<input type="text" id="inputShipToUSLastName"
+					   class="form-control immediate-help"
+					   placeholder="Last Name"
+					   data-ng-model="address.lname"
+					   last-name-validate required />
+				<div class="input-help bottom-right">
+					<div class="arrow"></div>
+					<h4>Last name must:</h4>
+					<ul>
+						<li ng-class="lastNameMinValidLength">Be at least <strong>1 letter long</strong></li>
+						<li ng-show="lastNameDisallowedChars != null" ng-class="lastNameAllowedChars">Not contain <strong>{{ lastNameDisallowedChars.join("") }}</strong></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 

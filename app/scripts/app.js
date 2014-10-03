@@ -10,6 +10,7 @@
 angular.module('VolusionCheckout.templates', []);
 angular.module('VolusionCheckout.services', []);
 angular.module('VolusionCheckout.controllers', []);
+angular.module('VolusionCheckout.directives', []);
 
 angular
 	.module('vnCheckoutApp', [
@@ -27,7 +28,8 @@ angular
 		// Volusion modules
 		'Volusion.toolboxCommon',
 		'VolusionCheckout.controllers',
-		'VolusionCheckout.services'
+		'VolusionCheckout.services',
+		'VolusionCheckout.directives'
 	])
 	.config(['$routeProvider', '$locationProvider',
 		function ($routeProvider, $locationProvider) {
