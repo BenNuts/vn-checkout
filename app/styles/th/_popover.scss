@@ -177,7 +177,7 @@
 
 /* Always hide the input help when it's pristine */
 input.ng-pristine + .input-help {
-	display: block;
+	display: none;
 }
 
 /* Hide the invalid box while the input has focus */
