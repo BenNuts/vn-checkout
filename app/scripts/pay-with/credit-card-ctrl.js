@@ -104,6 +104,15 @@ angular.module('VolusionCheckout.controllers')
 			}
 		};
 
+		$scope.displayExpDate = function () {
+			var exp = '';
+
+			exp = ($scope.payment.ccExpMonth === 'MM') ? '' : $scope.payment.ccExpMonth;
+			exp += ($scope.payment.ccExpYear === 'YY') ? '' : '/' + $scope.payment.ccExpYear;
+
+			return exp;
+		};
+
 		$scope.$watch('payment.ccNumber', function () {
 			setCreditCardInfo();
 		});

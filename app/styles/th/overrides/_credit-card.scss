@@ -10,6 +10,23 @@
 			padding : 0;
 		}
 
+		&__info {
+
+			text-align   : left;
+			font-size    : 14px;
+			padding-left : 15px;
+
+			&__image {
+				width         : 100%;
+				text-align    : right;
+				padding-right : 15px;
+			}
+
+			&--bold {
+				font-weight : bold;
+			}
+		}
+
 		&__strip {
 			margin           : 10px 0;
 			height           : 30px;
@@ -39,9 +56,9 @@
 		}
 
 		&__image {
-			height         : 30px;
-			width          : 44px;
-			background     : url('/images/sprites/creditcards-b.png') -166px 0;
+			height     : 30px;
+			width      : 44px;
+			background : url('/images/sprites/creditcards-b.png') -166px 0;
 
 			&--notvalid {
 				-webkit-filter : grayscale(100%);
@@ -50,7 +67,7 @@
 			}
 
 			&--flipped {
-				background     : url('/images/sprites/creditcards-b.png') -291px 0;
+				background : url('/images/sprites/creditcards-b.png') -291px 0;
 			}
 
 			&--unknown {

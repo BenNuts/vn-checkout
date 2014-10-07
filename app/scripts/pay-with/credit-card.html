@@ -29,9 +29,9 @@
 				</div>
 			</div>
 
-			<div class="col-xs-12" ng-switch-when="show">
+			<div class="col-xs-12 credit-card__info" ng-switch-when="show">
 				<div class="form-group">
-					<span>{{ payment.ccNumber }}</span>
+					<span class="credit-card__info--bold">{{ payment.ccNumber }}</span>
 				</div>
 			</div>
 		</div>
@@ -95,9 +95,9 @@
 				</div>
 			</div>
 
-			<div class="col-xs-12" ng-switch-when="show">
+			<div class="col-xs-12 credit-card__info" ng-switch-when="show">
 				<div class="form-group">
-					<span>{{ payment.ccExpMonth }}/{{ payment.ccExpYear }}</span>
+					<span>{{ displayExpDate() }}</span>
 				</div>
 			</div>
 		</div>
@@ -118,13 +118,7 @@
 				</div>
 			</div>
 
-			<div class="col-xs-9" ng-switch-when="show">
-				<div class="form-group">
-					<span>{{ payment.ccHolderName }}</span>
-				</div>
-			</div>
-
-			<div class="col-xs-3" ng-switch-when="show">
+			<div class="col-xs-3 credit-card__info__image" ng-switch-when="show">
 				<div class="form-group">
 					<img src="{{ payment.ccImage }}" class="credit-card__image" data-ng-class="payment.ccCssClass" />
 				</div>

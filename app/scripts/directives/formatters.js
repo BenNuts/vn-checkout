@@ -34,6 +34,11 @@ angular.module('VolusionCheckout.directives')
 		'use strict';
 
 		function formatCC (number) {
+
+			if (number === '') {
+				return number;
+			}
+
 			var ccArr = [];
 
 			if (/^(34)|^(37)/.test(number)) {
@@ -67,11 +72,8 @@ angular.module('VolusionCheckout.directives')
 
 				ctrl.$parsers.unshift(function (viewValue) {
 
-					if (viewValue === '') {
-						return '';
-					}
+					var plainNumber = viewValue.replace(/[^\d]+/g, '');
 
-					var plainNumber = viewValue.replace(/[^\d|\-+|\.s+]/g, '');
 					elem.val($filter('filter')(function () {
 						return formatCC(plainNumber);
 					}));
