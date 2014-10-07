@@ -1,0 +1,82 @@
+.th-checkout__credit-card {
+
+	padding : 15px;
+
+	.credit-card {
+		@include border-radius(10px);
+		border : 2px solid $gray;
+
+		.row {
+			padding : 0;
+		}
+
+		&__strip {
+			margin           : 10px 0;
+			height           : 30px;
+			background-color : $gray-lighter;
+		}
+
+		&__exp-month {
+			position : relative;
+
+			.dropdown-menu {
+				min-width : 130px;
+				width     : 130px;
+			}
+		}
+
+		&__exp-year {
+			position : relative;
+
+			.dropdown-menu {
+				min-width : 60px;
+				width     : 100%;
+
+				a {
+					padding : 3px 15px;
+				}
+			}
+		}
+
+		&__image {
+			height         : 30px;
+			width          : 44px;
+			background     : url('/images/sprites/creditcards-b.png') -166px 0;
+
+			&--notvalid {
+				-webkit-filter : grayscale(100%);
+				-moz-filter    : grayscale(100%);
+				filter         : grayscale(100%);
+			}
+
+			&--flipped {
+				background     : url('/images/sprites/creditcards-b.png') -291px 0;
+			}
+
+			&--unknown {
+				background : url('/images/sprites/creditcards-b.png') -166px 0;
+			}
+
+			&--amex {
+				background : url('/images/sprites/creditcards-b.png') 1px 0;
+			}
+
+			&--amex-flipped {
+				background : url('/images/sprites/creditcards-b.png') -333px 0;
+			}
+
+			&--visa {
+				background : url('/images/sprites/creditcards-b.png') -41px 0;
+			}
+
+			&--mastercard {
+				background : url('/images/sprites/creditcards-b.png') -83px 0;
+			}
+
+			&--discover {
+				background : url('/images/sprites/creditcards-b.png') -208px 0;
+			}
+		}
+	}
+
+}

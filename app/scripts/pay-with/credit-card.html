@@ -1,0 +1,135 @@
+<div class="th-checkout__credit-card" data-ng-controller="CreditCardCtrl" data-ng-switch="isEditable()">
+
+	<div class="credit-card">
+
+		<div class="credit-card__strip"></div>
+
+		<div class="row">
+			<div class="col-xs-9" ng-switch-when="edit">
+				<div class="form-group">
+					<label class="control-label sr-only" for="inputCreditCardNumber"></label>
+					<input type="text"
+						   id="inputCreditCardNumber" class="form-control immediate-help"
+						   placeholder="1234 5678 9012 4567"
+						   pattern="[0-9]*"
+						   data-ng-model="payment.ccNumber"
+						   data-format-cc-number />
+				</div>
+			</div>
+			<div class="col-xs-3" ng-switch-when="edit">
+				<div class="form-group">
+					<label class="control-label sr-only" for="inputCreditCardCVV"></label>
+					<input type="text" id="inputCreditCardCVV"
+						   class="form-control immediate-help"
+						   placeholder="CVV"
+						   data-ng-model="payment.ccCvv"
+						   data-ng-focus="setCCImage()"
+						   data-ng-blur="setCCImage('reset')" />
+
+				</div>
+			</div>
+
+			<div class="col-xs-12" ng-switch-when="show">
+				<div class="form-group">
+					<span>{{ payment.ccNumber }}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-6" ng-switch-when="edit">
+				<div>Expiration</div>
+			</div>
+			<div class="col-xs-3" ng-switch-when="edit">
+				<div class="form-group">
+					<label class="control-label sr-only" for="inputCreditCardExpMonth"></label>
+					<!--<input type="text"-->
+						   <!--id="inputCreditCardExpMonth" class="form-control immediate-help"-->
+						   <!--placeholder=""-->
+						   <!--data-ng-model="payment.ccExpMonth" />-->
+					<div class="credit-card__exp-month th-dropdown">
+						<button class="btn btn-default dropdown-toggle form-control"
+								data-toggle="dropdown">
+
+							{{ payment.ccExpMonth }}<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li ng-repeat="month in months track by $index">
+								<a role="menuitem"
+								   tabindex="-1"
+								   href
+								   data-ng-click="onExpMonthChanged(month)">
+
+									{{ month.label }}
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-3" ng-switch-when="edit">
+				<div class="form-group">
+					<label class="control-label sr-only" for="inputCreditCardExpYear"></label>
+					<!--<input type="text"-->
+						   <!--id="inputCreditCardExpYear" class="form-control immediate-help"-->
+						   <!--placeholder=""-->
+						   <!--data-ng-model="payment.ccExpYear" />-->
+					<div class="credit-card__exp-year th-dropdown">
+						<button class="btn btn-default dropdown-toggle form-control"
+								data-toggle="dropdown">
+
+							{{ payment.ccExpYear }}<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li ng-repeat="year in rangeYears() track by $index">
+								<a role="menuitem"
+								   tabindex="-1"
+								   href
+								   data-ng-click="onExpYearChanged(year)">
+
+									{{ year }}
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xs-12" ng-switch-when="show">
+				<div class="form-group">
+					<span>{{ payment.ccExpMonth }}/{{ payment.ccExpYear }}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-9" ng-switch-when="edit">
+				<div class="form-group">
+					<label class="control-label sr-only" for="inputCreditCardHolderName"></label>
+					<input type="text"
+						   id="inputCreditCardHolderName" class="form-control immediate-help"
+						   placeholder="Name on card"
+						   data-ng-model="payment.ccHolderName" />
+				</div>
+			</div>
+			<div class="col-xs-3" ng-switch-when="edit">
+				<div class="form-group">
+					<img src="{{ payment.ccImage }}" class="credit-card__image" data-ng-class="payment.ccCssClass" />
+				</div>
+			</div>
+
+			<div class="col-xs-9" ng-switch-when="show">
+				<div class="form-group">
+					<span>{{ payment.ccHolderName }}</span>
+				</div>
+			</div>
+
+			<div class="col-xs-3" ng-switch-when="show">
+				<div class="form-group">
+					<img src="{{ payment.ccImage }}" class="credit-card__image" data-ng-class="payment.ccCssClass" />
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

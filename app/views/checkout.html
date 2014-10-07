@@ -22,7 +22,14 @@
 		</div>
 		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[1].active }">
 			<div class="th-checkout__step__overlay"></div>
-			 Step 2 Here
+			<div class="th-checkout__step__title">
+				<span data-ng-if="checkout.steps[1].active">2</span>
+				<span data-ng-if="!checkout.steps[1].active"><i class="fa fa-check-circle"></i></span>
+				<br />
+				<span>Pay With</span>
+			</div>
+
+			<div ng-include=" 'scripts/pay-with/credit-card.html' "></div>
 
 			<hr />
 
