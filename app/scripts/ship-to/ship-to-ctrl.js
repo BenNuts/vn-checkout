@@ -6,7 +6,7 @@
  * Controller of the vnCheckoutApp
  */
 angular.module('VolusionCheckout.controllers')
-	.controller('ShipToCtrl', ['$scope', '$filter', 'vnCheckout', 'vnApi', function ($scope, $filter, vnCheckout, vnApi) {
+	.controller('ShipToCtrl', ['$rootScope', '$scope', '$filter', 'vnCheckout', 'vnApi', function ($rootScope, $scope, $filter, vnCheckout, vnApi) {
 
 		'use strict';
 
@@ -65,5 +65,23 @@ angular.module('VolusionCheckout.controllers')
 
 		$scope.onUsStateChanged = function (state) {
 			$scope.address.state = state.code;
+		};
+
+		$scope.updateShippingAddress = function () {
+			if ($scope.frmShipTo.$valid) {
+
+				// TODO : REMOVE THIS ***********************************************
+
+				$rootScope.$emit('vnShippingAddress.updated');
+
+				// TODO : REMOVE THIS ***********************************************
+			} else {
+				// TODO : REMOVE THIS ***********************************************
+
+				$rootScope.$emit('vnShippingAddress.failed');
+
+				// TODO : REMOVE THIS ***********************************************
+
+			}
 		};
 	}]);

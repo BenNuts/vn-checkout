@@ -1,0 +1,43 @@
+.th-checkout__ship-method {
+	text-align : left;
+	padding    : 0 25px;
+
+	&__method {
+		position : relative;
+	}
+
+	&__price {
+		position : absolute;
+		top      : 0;
+		right    : 0;
+	}
+
+	&__display {
+
+		position: relative;
+
+		&__name {
+			width: 80%;
+			float: left;
+		}
+
+		&__price {
+			width: 20%;
+			float: right;
+			text-align: right;
+		}
+	}
+
+	.styled-checkbox-option {
+		input {
+			+ label {
+				padding-right : 55px;
+				margin-left   : 30px;
+
+				&:before {
+					margin-left : -30px;
+				}
+			}
+		}
+	}
+}

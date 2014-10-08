@@ -11,7 +11,13 @@ angular.module('VolusionCheckout.controllers')
 
 		'use strict';
 
+		var SHIP_TO = 1;
+
 		$scope.checkout = vnCheckout.get();
+
+		$scope.isEditable = function (tab) {
+			return ($scope.checkout.currentStep === tab) ? 'edit' : 'show';
+		};
 
 		$scope.nextStep = function () {
 			vnCheckout.nextStep();

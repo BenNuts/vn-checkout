@@ -125,7 +125,7 @@
 
 	&.bottom-right {
 		top: 32px;
-		right: 15px;
+		right: 5px;
 
 		.arrow {
 			right: 20px;
@@ -233,8 +233,8 @@ input.ng-pristine + .input-help {
 
 /* Help should show and be red when invalid */
 .ng-invalid + .input-help {
-	//	Un-mark following row for debugging input-help element
-	//    display: block;
+//		Un-mark following row for debugging input-help element
+//	    display: block;
 	//border-color: #ec3f41;
 }
 .ng-invalid + .input-help::before {

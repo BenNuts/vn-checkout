@@ -1,6 +1,6 @@
 <div class="container th-checkout-content">
 	<div class="row">
-		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[0].active }">
+		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[0].active }" data-ng-switch="isEditable(1)">
 			<div class="th-checkout__step__overlay"></div>
 			<div class="th-checkout__step__title">
 				<span data-ng-if="checkout.steps[0].active">1</span>
@@ -11,16 +11,12 @@
 
 			<div ng-include=" 'scripts/ship-to/ship-to.html' "></div>
 
-			<hr />
-
 			<div ng-include=" 'scripts/ship-method/ship-method.html' "></div>
 
-			<hr />
-
-			<button class="btn btn-primary" data-ng-click="nextStep()">Continue&nbsp;<i class="fa fa-angle-right"></i></button>
+			<button class="btn btn-primary" data-ng-switch-when="edit" data-ng-click="nextStep()">Continue&nbsp;<i class="fa fa-angle-right"></i></button>
 
 		</div>
-		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[1].active }">
+		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[1].active }" data-ng-switch="isEditable(2)">
 			<div class="th-checkout__step__overlay"></div>
 			<div class="th-checkout__step__title">
 				<span data-ng-if="checkout.steps[1].active">2</span>
@@ -33,7 +29,7 @@
 
 			<hr />
 
-			<button class="btn btn-primary" data-ng-click="prevStep()"><i class="fa fa-angle-left">&nbsp;Back</i></button>
+			<button class="btn btn-primary" data-ng-switch-when="edit" data-ng-click="prevStep()"><i class="fa fa-angle-left">&nbsp;Back</i></button>
 		</div>
 		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[2].active }">
 			<div class="th-checkout__step__overlay"></div>
