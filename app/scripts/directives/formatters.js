@@ -42,19 +42,23 @@ angular.module('VolusionCheckout.directives')
 			var ccArr = [];
 
 			if (/^(34)|^(37)/.test(number)) {
-				ccArr.push(number.slice(0, 4));
-				if (number.slice(4, 10).length > 0) {
-					ccArr.push(number.slice(4, 10));
+
+				ccArr = number.slice(0, 15).match(/(.{0,4})(.{0,6})(.{0,5})$/);
+				// remove first element as the regex retunes always 4 elements as the first one is the whole string
+				ccArr.splice(0,1);
+
+				for(var idx = 0; idx < ccArr.length; idx++ ) {
+					if (ccArr[idx] === '') {
+						ccArr.splice (idx, 1);
+						idx = 0;
+					}
 				}
 
-				if (number.slice(10, 15).length > 0) {
-					ccArr.push(number.slice(10, 15));
-				}
 			} else {
 				ccArr = number.slice(0, 16).match(/.{1,4}/g);
 			}
 
-			return ccArr.join(' ');
+			return (ccArr !== null) ? ccArr.join(' ') : number;
 		}
 
 

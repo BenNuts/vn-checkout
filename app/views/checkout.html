@@ -13,7 +13,13 @@
 
 			<div ng-include=" 'scripts/ship-method/ship-method.html' "></div>
 
-			<button class="btn btn-primary" data-ng-switch-when="edit" data-ng-click="nextStep()">Continue&nbsp;<i class="fa fa-angle-right"></i></button>
+			<button class="btn btn-primary"
+					data-ng-switch-when="edit"
+					data-ng-click="nextStep()"
+					data-ng-disabled="getShipToValid()" >
+
+					Continue&nbsp;<i class="fa fa-angle-right"></i>
+			</button>
 
 		</div>
 		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[1].active }" data-ng-switch="isEditable(2)">
@@ -30,6 +36,13 @@
 			<hr />
 
 			<button class="btn btn-primary" data-ng-switch-when="edit" data-ng-click="prevStep()"><i class="fa fa-angle-left">&nbsp;Back</i></button>
+			<button class="btn btn-primary"
+					data-ng-switch-when="edit"
+					data-ng-click="nextStep()"
+					data-ng-disabled="getCreditCardValid()">
+
+					Continue&nbsp;<i class="fa fa-angle-right"></i>
+			</button>
 		</div>
 		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[2].active }">
 			<div class="th-checkout__step__overlay"></div>

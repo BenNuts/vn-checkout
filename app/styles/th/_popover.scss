@@ -41,8 +41,8 @@
 	}
 
 	&.top {
-		bottom: 42px;
-		right: 0px;
+		bottom: 47px;
+		right: 5px;
 
 		.arrow {
 			right: 20px;
@@ -63,7 +63,7 @@
 
 	&.top-left {
 		bottom: 47px;
-		left: 15px;
+		left: 5px;
 
 		.arrow {
 			left: 20px;
@@ -177,7 +177,7 @@
 
 /* Always hide the input help when it's pristine */
 input.ng-pristine + .input-help {
-	display: none;
+	display: none !important;
 }
 
 /* Hide the invalid box while the input has focus */

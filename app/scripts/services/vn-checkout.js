@@ -15,21 +15,31 @@ angular.module('VolusionCheckout.services')
 			IMAGE_WW = 'images/worldwide-flag.png',
 
 			checkout = {
-				location : {
+				location       : {
 					label: 'us',
 					image: IMAGE_US
 				},
-				currentStep: 1,
-				steps      : [
+				currentStep    : 1,
+				steps          : [
 					{ 'active': true },
 					{ 'active': false },
 					{ 'active': false }
-				]
+				],
+				shipToValid    : true,
+				creditCardValid: false
 			};
 
 		function toggleLocation() {
 			checkout.location.label = (checkout.location.label === 'ww') ? 'us' : 'ww';
 			checkout.location.image = (checkout.location.label === 'us') ? IMAGE_US : IMAGE_WW;
+		}
+
+		function setShipToValidity(bool) {
+			checkout.shipToValid = bool;
+		}
+
+		function setCreditCardValidity(bool) {
+			checkout.creditCardValid = bool;
 		}
 
 		function setStep() {
@@ -60,9 +70,11 @@ angular.module('VolusionCheckout.services')
 		}
 
 		return {
-			get           : get,
-			nextStep      : nextStep,
-			prevStep      : prevStep,
-			toggleLocation: toggleLocation
+			get                  : get,
+			nextStep             : nextStep,
+			prevStep             : prevStep,
+			setCreditCardValidity: setCreditCardValidity,
+			setShipToValidity    : setShipToValidity,
+			toggleLocation       : toggleLocation
 		};
 	});

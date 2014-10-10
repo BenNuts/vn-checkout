@@ -65,21 +65,39 @@ angular.module('VolusionCheckout.controllers')
 
 		$scope.onUsStateChanged = function (state) {
 			$scope.address.state = state.code;
+
+			$scope.updateShippingAddress();
 		};
 
-		$scope.updateShippingAddress = function () {
+		$scope.updateShippingAddress = function (forElem) {
+
+			// Compensatory measure as we do not want to show error bubble while users are still entering  [semi] valid values
+			// Zip validatior will accept any number with length less than 5 ... so on blur we have to check if Zip is really valid
+			if (forElem !== undefined && forElem === 'zip') {
+				var plainNumber = $scope.frmShipTo.inputShipToUSZip.$viewValue.replace(/[^\d]+/g, '');
+
+				if (plainNumber === $scope.frmShipTo.inputShipToUSZip.$viewValue && plainNumber.toString().length < 5) {
+					$scope.frmShipTo.inputShipToUSZip.$setValidity('zip', false);
+				}
+			}
+
+			// State dropdown does not have validation so we have to check here
+			if ($scope.address.state === '') {
+				$scope.frmShipTo.$setValidity('state', false);
+			} else {
+				$scope.frmShipTo.$setValidity('state', true);
+			}
+
+			vnCheckout.setShipToValidity($scope.frmShipTo.$valid);
+
 			if ($scope.frmShipTo.$valid) {
 
 				// TODO : REMOVE THIS ***********************************************
-
 				$rootScope.$emit('vnShippingAddress.updated');
-
 				// TODO : REMOVE THIS ***********************************************
 			} else {
 				// TODO : REMOVE THIS ***********************************************
-
 				$rootScope.$emit('vnShippingAddress.failed');
-
 				// TODO : REMOVE THIS ***********************************************
 
 			}

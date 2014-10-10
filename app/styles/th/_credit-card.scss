@@ -5,21 +5,26 @@
 	.credit-card {
 		@include border-radius(10px);
 		border : 2px solid $gray;
+		height : 192px;
 
 		.row {
 			padding : 0;
 		}
 
-		&__info {
-
+		&__display {
 			text-align   : left;
 			font-size    : 14px;
 			padding-left : 15px;
+			height       : 140px;
 
 			&__image {
-				width         : 100%;
-				text-align    : right;
-				padding-right : 15px;
+				height     : 30px;
+				width      : 44px;
+				position   : absolute;
+				bottom     : -81px;
+				right      : 23px;
+				background : url('/images/sprites/creditcards-b.png') -166px 0;
+
 			}
 
 			&--bold {
@@ -56,9 +61,15 @@
 		}
 
 		&__image {
-			height     : 30px;
-			width      : 44px;
-			background : url('/images/sprites/creditcards-b.png') -166px 0;
+			height                  : 30px;
+			width                   : 44px;
+			background              : url('/images/sprites/creditcards-b.png') -166px 0;
+
+			-webkit-transform-style : preserve-3d;
+			-webkit-transition      : -webkit-transform 0.3s;
+			-moz-transition         : -moz-transform 0.3s;
+			/* transform-style:preserve-3d; */
+			transition              : transform .3s;
 
 			&--notvalid {
 				-webkit-filter : grayscale(100%);
