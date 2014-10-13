@@ -4,6 +4,15 @@
 		width      : 100%;
 		text-align : left;
 
+		&:hover {
+			background-color: transparent;
+			border-bottom: 1px solid $gray;
+		}
+
+		&:focus {
+			background-color: transparent;
+		}
+
 		.caret {
 			position : absolute;
 			right    : 10px;
