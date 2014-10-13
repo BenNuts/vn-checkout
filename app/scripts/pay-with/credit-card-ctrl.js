@@ -168,7 +168,7 @@ angular.module('VolusionCheckout.controllers')
 				$scope.expDateInvalid = 'valid';
 
 				if (parseInt('20' + $scope.payment.ccExpYear) === date.getFullYear()) {
-					if (parseInt($scope.payment.ccExpMonth) < date.getMonth()) {
+					if (parseInt($scope.payment.ccExpMonth) < date.getMonth() + 1) {
 						$scope.expDateInvalid = undefined;
 						$scope.frmCreditCard.$setValidity('expmonth', false);
 					}

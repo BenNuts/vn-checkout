@@ -36,10 +36,9 @@
 			<div class="row" data-ng-switch-when="edit">
 				<div class="col-xs-6">
 					<div class="form-group">
-						<label class="control-label sr-only" for="inputShipToUSFirstName"></label>
 						<input type="text"
 							   id="inputShipToUSFirstName" class="form-control immediate-help"
-							   placeholder="First Name"
+							   data-vn-placeholder="First Name"
 							   data-ng-model="address.fname"
 							   data-ng-blur="updateShippingAddress()"
 							   data-first-name-validate required/>
@@ -54,14 +53,13 @@
 					</div>
 				</div>
 				<div class="col-xs-6">
-					<div class="form-group">
-						<label class="control-label sr-only" for="inputShipToUSLastName"></label>
+					<div class="form-group -right">
 						<input type="text" id="inputShipToUSLastName"
-							   class="form-control immediate-help"
-							   placeholder="Last Name"
+							   class="form-control -right immediate-help"
+							   data-vn-placeholder="Last Name"
 							   data-ng-model="address.lname"
 							   data-ng-blur="updateShippingAddress()"
-							   last-name-validate required />
+							   data-last-name-validate required />
 						<div class="input-help bottom-right">
 							<div class="arrow"></div>
 							<h4>Last name must:</h4>
@@ -76,13 +74,12 @@
 			<div class="row" data-ng-switch-when="edit">
 				<div class="col-xs-12">
 					<div class="form-group">
-						<label class="control-label sr-only" for="inputShipToUSAddressLine1"></label>
 						<input type="text" id="inputShipToUSAddressLine1"
 							   class="form-control immediate-help"
-							   placeholder="Address Line 1"
+							   data-vn-placeholder="Address Line 1"
 							   data-ng-model="address.line1"
 							   data-ng-blur="updateShippingAddress()"
-							   street-validate required />
+							   data-street-validate required />
 						<div class="input-help bottom">
 							<div class="arrow"></div>
 							<h4>Address must:</h4>
@@ -97,21 +94,22 @@
 			<div class="row" data-ng-switch-when="edit">
 				<div class="col-xs-12">
 					<div class="form-group">
-						<label class="control-label sr-only" for="inputShipToUSAddressLine2"></label>
-						<input type="text" id="inputShipToUSAddressLine2" class="form-control" placeholder="Address Line 2" data-ng-model="address.line2"/>
+						<input type="text" id="inputShipToUSAddressLine2"
+							   class="form-control"
+							   data-vn-placeholder="Address Line 2"
+							   data-ng-model="address.line2"/>
 					</div>
 				</div>
 			</div>
 			<div class="row" data-ng-show="isLocationUS" data-ng-switch-when="edit">
 				<div class="col-xs-5">
 					<div class="form-group">
-						<label class="control-label sr-only" for="inputShipToUSCity"></label>
 						<input type="text" id="inputShipToUSCity"
 							   class="form-control immediate-help"
-							   placeholder="City"
+							   data-vn-placeholder="City"
 							   data-ng-model="address.city"
 							   data-ng-blur="updateShippingAddress()"
-							   city-validate required />
+							   data-city-validate required />
 						<div class="input-help top-left">
 							<div class="arrow"></div>
 							<h4>City must:</h4>
@@ -124,8 +122,6 @@
 				</div>
 				<div class="col-xs-3">
 					<div class="form-group">
-						<label class="control-label sr-only" for="inputShipToUSState"></label>
-						<!--<input type="text" id="inputShipToUSState" class="form-control" placeholder="ST" data-ng-model="address.state"/>-->
 						<div class="th-checkout__ship-to__state th-dropdown">
 							<button class="btn btn-default dropdown-toggle form-control"
 									data-toggle="dropdown"
@@ -148,14 +144,13 @@
 					</div>
 				</div>
 				<div class="col-xs-4">
-					<div class="form-group">
-						<label class="control-label sr-only" for="inputShipToUSZip"></label>
+					<div class="form-group -right">
 						<input type="text" id="inputShipToUSZip" name="inputShipToUSZip"
 							   class="form-control immediate-help"
-							   placeholder="Zip"
+							   data-vn-placeholder="Zip"
 							   data-ng-blur="updateShippingAddress('zip')"
 							   data-ng-model="address.zip"
-							   zip-validate required />
+							   data-zip-validate required />
 						<div class="input-help top">
 							<div class="arrow"></div>
 							<h4>Zip code must:</h4>
@@ -170,7 +165,10 @@
 				<div class="col-xs-12">
 					<div class="form-group">
 						<label class="control-label sr-only" for="inputShipToWorldwideCity"></label>
-						<input type="text" id="inputShipToWorldwideCity" class="form-control" placeholder="City" data-ng-model="address.city"/>
+						<input type="text" id="inputShipToWorldwideCity"
+							   class="form-control"
+							   data-vn-placeholder="City"
+							   data-ng-model="address.city"/>
 					</div>
 				</div>
 			</div>
@@ -178,22 +176,25 @@
 				<div class="col-xs-6">
 					<div class="form-group">
 						<label class="control-label sr-only" for="inputShipToWorldwideRegion"></label>
-						<input type="text" id="inputShipToWorldwideRegion" class="form-control" placeholder="Region" data-ng-model="address.region"/>
+						<input type="text" id="inputShipToWorldwideRegion"
+							   class="form-control"
+							   data-vn-placeholder="Region"
+							   data-ng-model="address.region"/>
 					</div>
 				</div>
 				<div class="col-xs-6">
 					<div class="form-group">
 						<label class="control-label sr-only" for="inputShipToWorldwidePostalCode"></label>
-						<input type="text" id="inputShipToWorldwidePostalCode" class="form-control" placeholder="Postal code" data-ng-model="address.postalcode"/>
+						<input type="text" id="inputShipToWorldwidePostalCode"
+							   class="form-control"
+							   data-vn-placeholder="Postal code"
+							   data-ng-model="address.postalcode"/>
 					</div>
 				</div>
 			</div>
 			<div class="row" data-ng-show="!isLocationUS" data-ng-switch-when="edit">
 				<div class="col-xs-12">
 					<div class="form-group">
-						<label class="control-label sr-only" for="inputShipToWorldwideCountry"></label>
-						<!--<select id="inputShipToWorldwideCountry" class="form-control"  data-ng-model="address.country" ng-options="country.code as country.label for country in countries"/>-->
-
 						<div class="th-checkout__ship-to__country th-dropdown">
 							<button class="btn btn-default dropdown-toggle form-control"
 									data-toggle="dropdown">
@@ -220,7 +221,10 @@
 				<div class="col-xs-12">
 					<div class="form-group">
 						<label class="control-label sr-only" for="inputShipToUSPhoneNumber"></label>
-						<input type="text" id="inputShipToUSPhoneNumber" class="form-control" placeholder="Phone Number" data-ng-model="address.phone"/>
+						<input type="text" id="inputShipToUSPhoneNumber"
+							   class="form-control"
+							   data-vn-placeholder="Phone Number"
+							   data-ng-model="address.phone"/>
 					</div>
 				</div>
 			</div>

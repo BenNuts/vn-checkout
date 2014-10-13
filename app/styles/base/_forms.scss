@@ -29,6 +29,20 @@
 // input[type="color"]
 
 .form-control {
-	border : none;
-	border-bottom: 1px solid $gray-lighter;
+	border        : none;
+	border-bottom : 1px solid $gray-lighter;
+}
+
+.form-group {
+	&.-right {
+		input {
+			text-align : right;
+		}
+
+		label.placeholder {
+			right : 12px;
+			left  : auto
+		}
+	}
+
 }
