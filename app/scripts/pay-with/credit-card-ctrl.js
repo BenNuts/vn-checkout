@@ -12,6 +12,8 @@ angular.module('VolusionCheckout.controllers')
 
 		var PAY_WITH = 2;
 
+		$scope.expDateInvalid = 'valid';
+
 		function setCreditCardInfo() {
 			if ($scope.payment.ccNumber === undefined || $scope.payment.ccNumber === '') {
 				$scope.payment.ccCssClass = 'credit-card__image--notvalid';
@@ -113,8 +115,75 @@ angular.module('VolusionCheckout.controllers')
 			return exp;
 		};
 
+		$scope.updateCreditCard = function (forElem) {
+
+			var plainNumber;
+			// Compensatory measure(s) as we do not want to show error bubble while users are still entering  [semi] valid values
+
+			// CC validatior will accept any number with length less than 15/16 ... so on blur we have to check if CCNumber is really valid
+			if (forElem !== undefined && forElem === 'cc') {
+				plainNumber = $scope.frmCreditCard.inputCreditCardNumber.$viewValue.replace(/[^\d]+/g, '');
+				var ccNumberLength = 16;
+
+				if ($scope.payment.ccType === 'American Express') {
+					ccNumberLength = 15;
+				}
+
+				if (plainNumber.toString().length < ccNumberLength) {
+					$scope.frmCreditCard.inputCreditCardNumber.$setValidity('creditcard', false);
+				}
+			}
+
+			if (forElem !== undefined && forElem === 'cvv') {
+
+				plainNumber = $scope.frmCreditCard.inputCreditCardCVV.$viewValue.replace(/[^\d]+/g, '');
+				var cvvNumberLength = 3;
+
+				if ($scope.payment.ccType === 'American Express') {
+					cvvNumberLength = 4;
+				}
+
+				$scope.frmCreditCard.inputCreditCardCVV.$setValidity('cvv', (plainNumber.toString().length === cvvNumberLength));
+
+			}
+
+			// Month dropdown does not have validation so we have to check here
+			if ($scope.payment.ccExpMonth === 'MM') {
+				$scope.frmCreditCard.$setValidity('expmonth', false);
+			} else {
+				$scope.frmCreditCard.$setValidity('expmonth', true);
+			}
+
+			// Month dropdown does not have validation so we have to check here
+			if ($scope.payment.ccExpYear === 'YY') {
+				$scope.frmCreditCard.$setValidity('expyear', false);
+			} else {
+				$scope.frmCreditCard.$setValidity('expyear', true);
+			}
+
+			// Check expiration date
+			if ($scope.payment.ccExpMonth !== 'MM' && $scope.payment.ccExpYear !== 'YY') {
+
+				var date = new Date();
+				$scope.expDateInvalid = 'valid';
+
+				if (parseInt('20' + $scope.payment.ccExpYear) === date.getFullYear()) {
+					if (parseInt($scope.payment.ccExpMonth) < date.getMonth()) {
+						$scope.expDateInvalid = undefined;
+						$scope.frmCreditCard.$setValidity('expmonth', false);
+					}
+				}
+			}
+
+			vnCheckout.setCreditCardValidity($scope.frmCreditCard.$valid);
+
+			if ($scope.frmCreditCard.$valid) {
+			} else {
+			}
+		};
+
 		$scope.$watch('payment.ccNumber', function () {
 			setCreditCardInfo();
 		});
-	}])
-;
+
+	}]);
