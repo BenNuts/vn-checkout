@@ -72,8 +72,8 @@ angular.module('VolusionCheckout.controllers')
 		$scope.payment = {
 			ccNumber       : '',
 			ccCvv          : '',
-			ccExpMonth     : 'MM',
-			ccExpYear      : 'YY',
+			ccExpMonth     : '',
+			ccExpYear      : '',
 			ccHolderName   : '',
 
 			// for display purposes
@@ -88,10 +88,22 @@ angular.module('VolusionCheckout.controllers')
 
 		$scope.onExpMonthChanged = function (month) {
 			$scope.payment.ccExpMonth = month.num;
+
+			// VN-PLACEHOLDER need a value and event ... set these for current button
+			var elem = angular.element(document.querySelector('#inputCreditCardExpMonth'));
+			elem.val(month.num);
+			elem.triggerHandler('keyup');
+
 		};
 
 		$scope.onExpYearChanged = function (year) {
 			$scope.payment.ccExpYear = year.toString().substring(2);
+
+			// VN-PLACEHOLDER need a value and event ... set these for current button
+			var elem = angular.element(document.querySelector('#inputCreditCardExpYear'));
+			elem.val(year.toString().substring(2));
+			elem.triggerHandler('keyup');
+
 		};
 
 		$scope.setCCImage = function (param) {
@@ -109,8 +121,8 @@ angular.module('VolusionCheckout.controllers')
 		$scope.displayExpDate = function () {
 			var exp = '';
 
-			exp = ($scope.payment.ccExpMonth === 'MM') ? '' : $scope.payment.ccExpMonth;
-			exp += ($scope.payment.ccExpYear === 'YY') ? '' : '/' + $scope.payment.ccExpYear;
+			exp = ($scope.payment.ccExpMonth === '') ? '' : $scope.payment.ccExpMonth;
+			exp += ($scope.payment.ccExpYear === '') ? '' : '/' + $scope.payment.ccExpYear;
 
 			return exp;
 		};
@@ -148,21 +160,21 @@ angular.module('VolusionCheckout.controllers')
 			}
 
 			// Month dropdown does not have validation so we have to check here
-			if ($scope.payment.ccExpMonth === 'MM') {
+			if ($scope.payment.ccExpMonth === '') {
 				$scope.frmCreditCard.$setValidity('expmonth', false);
 			} else {
 				$scope.frmCreditCard.$setValidity('expmonth', true);
 			}
 
 			// Month dropdown does not have validation so we have to check here
-			if ($scope.payment.ccExpYear === 'YY') {
+			if ($scope.payment.ccExpYear === '') {
 				$scope.frmCreditCard.$setValidity('expyear', false);
 			} else {
 				$scope.frmCreditCard.$setValidity('expyear', true);
 			}
 
 			// Check expiration date
-			if ($scope.payment.ccExpMonth !== 'MM' && $scope.payment.ccExpYear !== 'YY') {
+			if ($scope.payment.ccExpMonth !== '' && $scope.payment.ccExpYear !== '') {
 
 				var date = new Date();
 				$scope.expDateInvalid = 'valid';
