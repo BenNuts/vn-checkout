@@ -66,7 +66,11 @@ angular.module('VolusionCheckout.controllers')
 		$scope.onUsStateChanged = function (state) {
 			$scope.address.state = state.code;
 
-			$scope.updateShippingAddress();
+			// VN-PLACEHOLDER need a value and event ... set these for current button
+			var elem = angular.element(document.querySelector('#inputShipToUSState'));
+			elem.val(state.code);
+			elem.triggerHandler('keyup');
+
 		};
 
 		$scope.updateShippingAddress = function (forElem) {
@@ -84,8 +88,10 @@ angular.module('VolusionCheckout.controllers')
 			// State dropdown does not have validation so we have to check here
 			if ($scope.address.state === '') {
 				$scope.frmShipTo.$setValidity('state', false);
+				$scope.stateEmpty = undefined;
 			} else {
 				$scope.frmShipTo.$setValidity('state', true);
+				$scope.stateEmpty = 'valid';
 			}
 
 			vnCheckout.setShipToValidity($scope.frmShipTo.$valid);

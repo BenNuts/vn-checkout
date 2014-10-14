@@ -41,7 +41,7 @@
 							   data-vn-placeholder="First Name"
 							   data-ng-model="address.fname"
 							   data-ng-blur="updateShippingAddress()"
-							   data-first-name-validate required/>
+							   data-vn-first-name-validate required/>
 						<div class="input-help bottom">
 							<div class="arrow"></div>
 							<h4>First name must:</h4>
@@ -53,7 +53,7 @@
 					</div>
 				</div>
 				<div class="col-xs-6">
-					<div class="form-group -right">
+					<div class="form-group">
 						<input type="text" id="inputShipToUSLastName"
 							   class="form-control -right immediate-help"
 							   data-vn-placeholder="Last Name"
@@ -123,18 +123,29 @@
 				<div class="col-xs-3">
 					<div class="form-group">
 						<div class="th-checkout__ship-to__state th-dropdown">
-							<button class="btn btn-default dropdown-toggle form-control"
+							<button id="inputShipToUSState" name="inputShipToUSState"
+									class="btn btn-default dropdown-toggle form-control"
 									data-toggle="dropdown"
-									data-ng-class="{ 'ng-invalid': address.state === '' }">
+									data-ng-class="{ 'ng-invalid': address.state === '', 'ng-valid': stateEmpty === 'valid' }"
+									data-vn-placeholder="State"
+									data-ng-model="address.state"
+									value="" >
 
 								{{ address.state }}<span class="caret"></span>
 							</button>
+							<div class="input-help top-left -dropdown">
+								<div class="arrow"></div>
+								<h4>State must:</h4>
+								<ul>
+									<li ng-class="stateEmpty">Be <strong>selected</strong></li>
+								</ul>
+							</div>
 							<ul class="dropdown-menu">
 								<li ng-repeat="state in usStates track by $index">
 									<a role="menuitem"
 									   tabindex="-1"
 									   href
-									   data-ng-click="onUsStateChanged(state)">
+									   data-ng-click="onUsStateChanged(state); updateShippingAddress()">
 
 										{{ state.name }}
 									</a>
@@ -144,7 +155,7 @@
 					</div>
 				</div>
 				<div class="col-xs-4">
-					<div class="form-group -right">
+					<div class="form-group">
 						<input type="text" id="inputShipToUSZip" name="inputShipToUSZip"
 							   class="form-control immediate-help"
 							   data-vn-placeholder="Zip"
@@ -225,7 +236,7 @@
 							   class="form-control"
 							   data-vn-placeholder="Phone Number"
 							   data-ng-model="address.phone"
-							   data-format-us-phone-number />
+							   data-vn-format-us-phone-number />
 					</div>
 				</div>
 			</div>
