@@ -24,7 +24,7 @@
 						<input type="text"
 							   id="inputCreditCardNumber" name="inputCreditCardNumber"
 							   class="form-control immediate-help"
-							   placeholder="Credit card number"
+							   data-vn-placeholder="Credit card number"
 							   data-ng-model="payment.ccNumber"
 							   data-ng-blur="updateCreditCard('cc')"
 							   data-format-cc-number data-cc-validate required />
@@ -43,7 +43,7 @@
 						<input type="text"
 							   id="inputCreditCardCVV" name="inputCreditCardCVV"
 							   class="form-control immediate-help"
-							   placeholder="CVV"
+							   data-vn-placeholder="CVV"
 							   data-ng-model="payment.ccCvv"
 							   data-ng-focus="setCCImage()"
 							   data-ng-blur="setCCImage('reset'); updateCreditCard('cvv')"

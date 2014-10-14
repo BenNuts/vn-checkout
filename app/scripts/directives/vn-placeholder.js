@@ -45,12 +45,8 @@ angular.module('VolusionCheckout.directives')
 								} else {
 									label.addClass('-selected');
 
-									if (label.html().length > 10) {
-										if (attrs.vnPlaceholderShort && attrs.vnPlaceholderShort.length > 0) {
-											label.html(attrs.vnPlaceholderShort);
-										} else {
-											label.html(label.html().substring(0, label.html().indexOf(' ')));
-										}
+									if (attrs.vnPlaceholderShort && attrs.vnPlaceholderShort.length > 0) {
+										label.html(attrs.vnPlaceholderShort);
 									}
 								}
 							});
