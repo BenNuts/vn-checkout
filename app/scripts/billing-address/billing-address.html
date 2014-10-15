@@ -1,0 +1,286 @@
+<div class="th-checkout__billing-address" data-ng-controller="BillingAddressCtrl" data-ng-switch="isEditable()">
+
+	<div class="styled-checkbox-option" data-ng-switch-when="edit">
+		<input type="checkbox" id="chkBillingAddress" name="chkBillingAddress" value="true"
+			   data-ng-model="check.useShippingAddress"
+			   data-ng-change="setBillingAddress()"/>
+		<label for="chkBillingAddress">&nbsp;{{ shippingAddress.line1 }}&nbsp; is also my billing address</label>
+	</div>
+
+	<!--Display only-->
+	<div class="styled-checkbox-option" data-ng-switch-when="show" data-ng-show="check.useShippingAddress">
+		<input type="checkbox" id="chkBillingAddressDisplay" name="chkBillingAddressDisplay" value="true"
+			   data-ng-model="check.useShippingAddress"/>
+		<label for="chkBillingAddressDisplay">&nbsp;{{ shippingAddress.line1 }}&nbsp; is also my billing address</label>
+	</div>
+
+	<div data-ng-switch-when="show" data-ng-show="!check.useShippingAddress && shippingAddress !== null">
+		<div class="row">
+			<div class="col-xs-12">
+				Billing Address
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<span>{{ billingAddress.fname }}&nbsp;{{ billingAddress.lname }}</span>
+				<br />
+				<span>{{ billingAddress.line1 }}</span>
+				<br />
+				<span data-ng-if="billingAddress.line2 != ''">{{ billingAddress.line2 }}</span>
+				<br data-ng-if="billingAddress.line2 != ''" />
+				<span data-ng-show="isLocationUS">{{ billingAddress.city }},&nbsp;{{ billingAddress.state }}&nbsp;{{ billingAddress.zip }}</span>
+				<br />
+				<div class="row" data-ng-show="!isLocationUS">
+					<span>{{ billingAddress.city }}</span>
+					<br/>
+					<span>{{ billingAddress.region }}&nbsp;{{ billingAddress.postalcode }}</span>
+					<br/>
+					<span>{{ billingAddress.country }}</span>
+					<br />
+				</div>
+				<span>{{ billingAddress.phone }}</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="th-checkout__billing-address__location"
+		 data-ng-switch-when="edit" data-ng-show="!check.useShippingAddress">
+
+		<a href data-ng-click="toggleLocation()">
+			<img src="{{ checkout.location.image }}" alt="{{ checkout.location.label }}" />
+		</a>
+	</div>
+
+	<div>
+		<form id="frmBillTo" name="frmBillTo" novalidate data-ng-submit="updateBillingAddress()">
+			<div class="row" data-ng-switch-when="edit" data-ng-show="!check.useShippingAddress">
+				<div class="col-xs-6">
+					<div class="form-group">
+						<input type="text"
+							   id="inputBillingUSFirstName" name="inputBillingUSFirstName"
+							   class="form-control immediate-help"
+							   data-vn-placeholder="First Name"
+							   data-ng-model="billingAddress.fname"
+							   data-ng-blur="updateBillingAddress()"
+							   data-vn-first-name-validate required/>
+
+						<div class="input-help bottom">
+							<div class="arrow"></div>
+							<h4>First name must:</h4>
+							<ul>
+								<li ng-class="firstNameMinValidLength">Be at least <strong>1 letter long</strong></li>
+								<li ng-show="firstNameDisallowedChars != null" ng-class="firstNameAllowedChars">Not contain <strong>{{
+									firstNameDisallowedChars.join("") }}</strong></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div class="form-group">
+						<input type="text"
+							   id="inputBillingUSLastName"  name="inputBillingUSLastName"
+							   class="form-control -right immediate-help"
+							   data-vn-placeholder="Last Name"
+							   data-ng-model="billingAddress.lname"
+							   data-ng-blur="updateBillingAddress()"
+							   data-vn-last-name-validate required/>
+
+						<div class="input-help bottom-right">
+							<div class="arrow"></div>
+							<h4>Last name must:</h4>
+							<ul>
+								<li ng-class="lastNameMinValidLength">Be at least <strong>1 letter long</strong></li>
+								<li ng-show="lastNameDisallowedChars != null" ng-class="lastNameAllowedChars">Not contain <strong>{{
+									lastNameDisallowedChars.join("") }}</strong></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" data-ng-switch-when="edit" data-ng-show="!check.useShippingAddress">
+				<div class="col-xs-12">
+					<div class="form-group">
+						<input type="text"
+							   id="inputBillingUSAddressLine1" name="inputBillingUSAddressLine1"
+							   class="form-control immediate-help"
+							   data-vn-placeholder="Address Line 1"
+							   data-ng-model="billingAddress.line1"
+							   data-ng-blur="updateBillingAddress()"
+							   data-vn-street-validate required/>
+
+						<div class="input-help bottom">
+							<div class="arrow"></div>
+							<h4>Address must:</h4>
+							<ul>
+								<li ng-class="streetEmpty">Not be <strong>empty</strong></li>
+								<li ng-show="streetDisallowedChars != null" ng-class="streetAllowedChars" class="valid">Not contain
+									<strong>{{ streetDisallowedChars.join("") }}</strong></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" data-ng-switch-when="edit" data-ng-show="!check.useShippingAddress">
+				<div class="col-xs-12">
+					<div class="form-group">
+						<input type="text"
+							   id="inputBillingUSAddressLine2" name="inputBillingUSAddressLine2"
+							   class="form-control"
+							   data-vn-placeholder="Address Line 2"
+							   data-ng-model="billingAddress.line2"/>
+					</div>
+				</div>
+			</div>
+			<div class="row" data-ng-show="isLocationUS" data-ng-switch-when="edit" data-ng-hide="check.useShippingAddress">
+				<div class="col-xs-5">
+					<div class="form-group">
+						<input type="text"
+							   id="inputBillingUSCity" name="inputBillingUSCity"
+							   class="form-control immediate-help"
+							   data-vn-placeholder="City"
+							   data-ng-model="billingAddress.city"
+							   data-ng-blur="updateBillingAddress()"
+							   data-vn-city-validate required/>
+
+						<div class="input-help top-left">
+							<div class="arrow"></div>
+							<h4>City must:</h4>
+							<ul>
+								<li ng-class="cityEmpty">Not be <strong>empty</strong></li>
+								<li ng-show="cityDisallowedChars != null" ng-class="cityAllowedChars" class="valid">Not contain
+									<strong>{{ cityDisallowedChars.join("") }}</strong></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<div class="form-group">
+						<div class="th-checkout__ship-to__state th-dropdown">
+							<button id="inputShipToUSState" name="inputShipToUSState"
+									class="btn btn-default dropdown-toggle form-control"
+									data-toggle="dropdown"
+									data-ng-class="{ 'ng-invalid': billingAddress.state === '', 'ng-valid': stateEmpty === 'valid' }"
+									data-vn-placeholder="State"
+									data-ng-model="address.state"
+									value="{{ billingAddress.state }}" >
+
+								{{ billingAddress.state }}<span class="caret"></span>
+							</button>
+							<div class="input-help top-left -dropdown">
+								<div class="arrow"></div>
+								<h4>State must:</h4>
+								<ul>
+									<li ng-class="stateEmpty">Be <strong>selected</strong></li>
+								</ul>
+							</div>
+							<ul class="dropdown-menu">
+								<li ng-repeat="state in usStates track by $index">
+									<a role="menuitem"
+									   tabindex="-1"
+									   href
+									   data-ng-click="onUsStateChanged(state); updateBillingAddress()">
+
+										{{ state.name }}
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-4">
+					<div class="form-group">
+						<input type="text"
+							   id="inputBillingUSZip" name="inputBillingUSZip"
+							   class="form-control immediate-help"
+							   data-vn-placeholder="Zip"
+							   data-ng-blur="updateBillingAddress('zip')"
+							   data-ng-model="billingAddress.zip"
+							   data-vn-zip-validate required/>
+
+						<div class="input-help top">
+							<div class="arrow"></div>
+							<h4>Zip code must:</h4>
+							<ul>
+								<li ng-class="zipHasValidFormat">Be formatted as 99999[-9999]</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" data-ng-show="!isLocationUS && !check.useShippingAddress" data-ng-switch-when="edit">
+				<div class="col-xs-12">
+					<div class="form-group">
+						<label class="control-label sr-only" for="inputBillingWorldwideCity"></label>
+						<input type="text"
+							   id="inputBillingWorldwideCity" name="inputBillingWorldwideCity"
+							   class="form-control"
+							   data-vn-placeholder="City"
+							   data-ng-model="billingAddress.city"/>
+					</div>
+				</div>
+			</div>
+			<div class="row" data-ng-show="!isLocationUS && !check.useShippingAddress" data-ng-switch-when="edit">
+				<div class="col-xs-6">
+					<div class="form-group">
+						<label class="control-label sr-only" for="inputBillingWorldwideRegion"></label>
+						<input type="text"
+							   id="inputBillingWorldwideRegion" name="inputBillingWorldwideRegion"
+							   class="form-control"
+							   data-vn-placeholder="Region"
+							   data-ng-model="billingAddress.region"/>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div class="form-group">
+						<label class="control-label sr-only" for="inputBillingWorldwidePostalCode"></label>
+						<input type="text"
+							   id="inputBillingWorldwidePostalCode" name="inputBillingWorldwidePostalCode"
+							   class="form-control"
+							   data-vn-placeholder="Postal code"
+							   data-ng-model="billingAddress.postalcode"/>
+					</div>
+				</div>
+			</div>
+			<div class="row" data-ng-show="!isLocationUS && !check.useShippingAddress" data-ng-switch-when="edit">
+				<div class="col-xs-12">
+					<div class="form-group">
+						<div class="th-checkout__ship-to__country th-dropdown">
+							<button class="btn btn-default dropdown-toggle form-control"
+									data-toggle="dropdown">
+
+								{{ billingAddress.country }}<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li ng-repeat="country in countries track by $index">
+									<a role="menuitem"
+									   tabindex="-1"
+									   href
+									   data-ng-click="onCountryChanged(country)">
+
+										{{ country.name }}
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row" data-ng-switch-when="edit" data-ng-show="!check.useShippingAddress">
+				<div class="col-xs-12">
+					<div class="form-group">
+						<label class="control-label sr-only" for="inputBillingUSPhoneNumber"></label>
+						<input type="text"
+							   id="inputBillingUSPhoneNumber" name="inputBillingUSPhoneNumber"
+							   class="form-control"
+							   data-vn-placeholder="Phone Number"
+							   data-ng-model="billingAddress.phone"
+							   data-vn-format-us-phone-number/>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+</div>

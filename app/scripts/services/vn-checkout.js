@@ -26,12 +26,17 @@ angular.module('VolusionCheckout.services')
 					{ 'active': false }
 				],
 				shipToValid    : true,
+				billToValid    : false,
 				creditCardValid: false
 			};
 
 		function toggleLocation() {
 			checkout.location.label = (checkout.location.label === 'ww') ? 'us' : 'ww';
 			checkout.location.image = (checkout.location.label === 'us') ? IMAGE_US : IMAGE_WW;
+		}
+
+		function setBillToValidity(bool) {
+			checkout.billToValid = bool;
 		}
 
 		function setShipToValidity(bool) {
@@ -74,6 +79,7 @@ angular.module('VolusionCheckout.services')
 			nextStep             : nextStep,
 			prevStep             : prevStep,
 			setCreditCardValidity: setCreditCardValidity,
+			setBillToValidity    : setBillToValidity,
 			setShipToValidity    : setShipToValidity,
 			toggleLocation       : toggleLocation
 		};

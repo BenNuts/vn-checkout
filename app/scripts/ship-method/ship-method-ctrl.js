@@ -34,6 +34,7 @@ angular.module('VolusionCheckout.controllers')
 			});
 		};
 
+		// TODO: REMOVE THIS --- shipping methods will be retrieved from CART
 		$rootScope.$on('vnShippingAddress.updated', function () {
 			$scope.cart.shippingMethods = [
 				{
@@ -63,10 +64,11 @@ angular.module('VolusionCheckout.controllers')
 		$rootScope.$on('vnShippingAddress.failed', function () {
 			$scope.cart.shippingMethods = [];
 		});
+		// TODO: REMOVE THIS ****************************************************
 
 		$scope.$watch('cart.shippingMethods', function () {
 
-			console.log($scope.cart.shippingMethods);
+			//console.log($scope.cart.shippingMethods);
 
 		}, true);
 

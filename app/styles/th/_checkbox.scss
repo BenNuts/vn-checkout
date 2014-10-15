@@ -2,6 +2,38 @@
 
 	text-align : left;
 
+	input[type=radio] {
+		+ label {
+			&:before {
+				content : '\f10c';
+			}
+		}
+
+		&:checked {
+			+ label {
+				&:before {
+					content : '\f192';
+				}
+			}
+		}
+	}
+
+	input[type=checkbox] {
+		+ label {
+			&:before {
+				content : '\f096';
+			}
+		}
+
+		&:checked {
+			+ label {
+				&:before {
+					content : '\f046';
+				}
+			}
+		}
+	}
+
 	input {
 		display : none !important;
 
@@ -11,7 +43,6 @@
 			margin    : 0;
 
 			&:before {
-				content        : '\f10c';
 				font-family    : 'FontAwesome';
 				font-size      : 16px;
 				display        : inline-block;
@@ -32,8 +63,6 @@
 		&:checked {
 			+ label {
 				&:before {
-					content     : '\f192';
-					font-family : 'FontAwesome';
 					//color: $cg8;
 					//border-color: $colorMain;
 					//background: $colorInfo !important;

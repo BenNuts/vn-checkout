@@ -99,7 +99,7 @@ angular.module('VolusionCheckout.controllers')
 			if ($scope.frmShipTo.$valid) {
 
 				// TODO : REMOVE THIS ***********************************************
-				$rootScope.$emit('vnShippingAddress.updated');
+				$rootScope.$emit('vnShippingAddress.updated', $scope.address);
 				// TODO : REMOVE THIS ***********************************************
 			} else {
 				// TODO : REMOVE THIS ***********************************************

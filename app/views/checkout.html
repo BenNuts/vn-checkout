@@ -35,11 +35,15 @@
 
 			<hr />
 
+			<div ng-include=" 'scripts/billing-address/billing-address.html' "></div>
+
+			<hr />
+
 			<button class="btn btn-primary" data-ng-switch-when="edit" data-ng-click="prevStep()"><i class="fa fa-angle-left">&nbsp;Back</i></button>
 			<button class="btn btn-primary"
 					data-ng-switch-when="edit"
 					data-ng-click="nextStep()"
-					data-ng-disabled="getCreditCardValid()">
+					data-ng-disabled="getCreditCardValid() && getBillingAddressValid()">
 
 					Continue&nbsp;<i class="fa fa-angle-right"></i>
 			</button>

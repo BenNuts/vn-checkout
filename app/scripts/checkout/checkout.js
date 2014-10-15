@@ -25,6 +25,10 @@ angular.module('VolusionCheckout.controllers')
 			return !$scope.checkout.creditCardValid;
 		};
 
+		$scope.getBillingAddressValid = function () {
+			return !$scope.checkout.billToValid;
+		};
+
 		$scope.nextStep = function () {
 			vnCheckout.nextStep();
 		};
