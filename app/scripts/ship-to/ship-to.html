@@ -110,14 +110,9 @@
 							   data-ng-model="address.city"
 							   data-ng-blur="updateShippingAddress()"
 							   data-vn-city-validate required />
-						<div class="input-help top-left">
-							<div class="arrow"></div>
-							<h4>City must:</h4>
-							<ul>
-								<li ng-class="cityEmpty">Not be <strong>empty</strong></li>
-								<li ng-show="cityDisallowedChars != null" ng-class="cityAllowedChars" class="valid">Not contain <strong>{{ cityDisallowedChars.join("") }}</strong></li>
-							</ul>
-						</div>
+
+						<data-vn-popover-city />
+						
 					</div>
 				</div>
 				<div class="col-xs-3">

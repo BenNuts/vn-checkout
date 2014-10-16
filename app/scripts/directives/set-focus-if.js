@@ -14,10 +14,10 @@ angular.module('VolusionCheckout.directives')
 				scope: {
 					setFocusIf: '='
 				},
-				link: function ($scope, $element) {
-					$scope.$watch('setFocusIf', function (currentValue) {
+				link: function (scope, element) {
+					scope.$watch('setFocusIf', function (currentValue) {
 						if (currentValue === undefined) {
-							$element[0].focus();
+							element[0].focus();
 						}
 					});
 				}
