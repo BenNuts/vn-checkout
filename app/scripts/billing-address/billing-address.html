@@ -65,15 +65,8 @@
 							   data-ng-blur="updateBillingAddress()"
 							   data-vn-first-name-validate required/>
 
-						<div class="input-help bottom">
-							<div class="arrow"></div>
-							<h4>First name must:</h4>
-							<ul>
-								<li ng-class="firstNameMinValidLength">Be at least <strong>1 letter long</strong></li>
-								<li ng-show="firstNameDisallowedChars != null" ng-class="firstNameAllowedChars">Not contain <strong>{{
-									firstNameDisallowedChars.join("") }}</strong></li>
-							</ul>
-						</div>
+						<data-vn-popover-first-name />
+
 					</div>
 				</div>
 				<div class="col-xs-6">
@@ -86,15 +79,8 @@
 							   data-ng-blur="updateBillingAddress()"
 							   data-vn-last-name-validate required/>
 
-						<div class="input-help bottom-right">
-							<div class="arrow"></div>
-							<h4>Last name must:</h4>
-							<ul>
-								<li ng-class="lastNameMinValidLength">Be at least <strong>1 letter long</strong></li>
-								<li ng-show="lastNameDisallowedChars != null" ng-class="lastNameAllowedChars">Not contain <strong>{{
-									lastNameDisallowedChars.join("") }}</strong></li>
-							</ul>
-						</div>
+						<data-vn-popover-last-name />
+
 					</div>
 				</div>
 			</div>
@@ -109,15 +95,8 @@
 							   data-ng-blur="updateBillingAddress()"
 							   data-vn-street-validate required/>
 
-						<div class="input-help bottom">
-							<div class="arrow"></div>
-							<h4>Address must:</h4>
-							<ul>
-								<li ng-class="streetEmpty">Not be <strong>empty</strong></li>
-								<li ng-show="streetDisallowedChars != null" ng-class="streetAllowedChars" class="valid">Not contain
-									<strong>{{ streetDisallowedChars.join("") }}</strong></li>
-							</ul>
-						</div>
+						<data-vn-popover-address />
+
 					</div>
 				</div>
 			</div>
@@ -143,15 +122,8 @@
 							   data-ng-blur="updateBillingAddress()"
 							   data-vn-city-validate required/>
 
-						<div class="input-help top-left">
-							<div class="arrow"></div>
-							<h4>City must:</h4>
-							<ul>
-								<li ng-class="cityEmpty">Not be <strong>empty</strong></li>
-								<li ng-show="cityDisallowedChars != null" ng-class="cityAllowedChars" class="valid">Not contain
-									<strong>{{ cityDisallowedChars.join("") }}</strong></li>
-							</ul>
-						</div>
+						<data-vn-popover-city />
+
 					</div>
 				</div>
 				<div class="col-xs-3">
@@ -167,13 +139,9 @@
 
 								{{ billingAddress.state }}<span class="caret"></span>
 							</button>
-							<div class="input-help top-left -dropdown">
-								<div class="arrow"></div>
-								<h4>State must:</h4>
-								<ul>
-									<li ng-class="stateEmpty">Be <strong>selected</strong></li>
-								</ul>
-							</div>
+
+							<data-vn-popover-state />
+
 							<ul class="dropdown-menu">
 								<li ng-repeat="state in usStates track by $index">
 									<a role="menuitem"
@@ -198,13 +166,8 @@
 							   data-ng-model="billingAddress.zip"
 							   data-vn-zip-validate required/>
 
-						<div class="input-help top">
-							<div class="arrow"></div>
-							<h4>Zip code must:</h4>
-							<ul>
-								<li ng-class="zipHasValidFormat">Be formatted as 99999[-9999]</li>
-							</ul>
-						</div>
+						<data-vn-popover-zip />
+
 					</div>
 				</div>
 			</div>
