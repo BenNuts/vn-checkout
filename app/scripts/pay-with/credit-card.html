@@ -26,7 +26,7 @@
 							   data-vn-placeholder="Credit card number"
 							   data-ng-model="payment.ccNumber"
 							   data-ng-blur="updateCreditCard('cc')"
-							   data-format-cc-number data-cc-validate required />
+							   data-vn-format-cc-number data-vn-cc-validate required />
 						<div class="input-help top-left">
 							<div class="arrow"></div>
 							<h4>Credit card must:</h4>
@@ -45,13 +45,12 @@
 							   data-ng-model="payment.ccCvv"
 							   data-ng-focus="setCCImage()"
 							   data-ng-blur="setCCImage('reset'); updateCreditCard('cvv')"
-							   data-cvv-validate required />
+							   data-vn-cvv-validate required />
 						<div class="input-help top">
 							<div class="arrow"></div>
 							<h4>CVV must:</h4>
 							<ul>
-								<li ng-class="cityEmpty">Be <strong>{{ cvvLength }} digits</strong> long</li>
-								<li ng-show="cityDisallowedChars != null" ng-class="cityAllowedChars" class="valid">Not contain <strong>{{ cityDisallowedChars.join("") }}</strong></li>
+								<li ng-class="cvvValidFormat">Be <strong>{{ cvvLength }} digits</strong> long</li>
 							</ul>
 						</div>
 					</div>
