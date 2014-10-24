@@ -39,11 +39,18 @@
 
 			<hr />
 
-			<button class="btn btn-primary" data-ng-switch-when="edit" data-ng-click="prevStep()"><i class="fa fa-angle-left">&nbsp;Back</i></button>
+			<button class="btn btn-primary"
+					data-ng-switch-when="edit"
+					data-ng-click="prevStep()"
+					data-ng-disabled="getCreditCardValid() || getBillingAddressValid()">
+
+				<i class="fa fa-angle-left">&nbsp;Back</i>
+			</button>
+
 			<button class="btn btn-primary"
 					data-ng-switch-when="edit"
 					data-ng-click="nextStep()"
-					data-ng-disabled="getCreditCardValid() && getBillingAddressValid()">
+					data-ng-disabled="getCreditCardValid() || getBillingAddressValid()">
 
 					Continue&nbsp;<i class="fa fa-angle-right"></i>
 			</button>

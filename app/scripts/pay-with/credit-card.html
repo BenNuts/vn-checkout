@@ -7,7 +7,7 @@
 		<div class="credit-card__display" data-ng-switch-when="show">
 			<div class="row">
 				<div class="col-xs-12">
-					<span class="credit-card__display--bold">{{ payment.ccNumber }}</span>
+					<span class="credit-card__display--bold">{{ payment.ccNumber | vnCreditCard }}</span>
 					<br />
 					<span>{{ displayExpDate() }}</span>
 					<br />

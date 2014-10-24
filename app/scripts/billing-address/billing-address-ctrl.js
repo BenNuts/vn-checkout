@@ -31,7 +31,7 @@ angular.module('VolusionCheckout.controllers')
 				region            : '',
 				zip               : '',
 				postalcode        : '',
-				country           : 'Unites States',
+				country           : 'United States',
 				phone             : ''
 			};
 

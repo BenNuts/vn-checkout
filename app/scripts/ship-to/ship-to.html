@@ -26,7 +26,7 @@
 					<span>{{ address.country }}</span>
 					<br />
 				</div>
-				<span>{{ address.phone }}</span>
+				<span>{{ address.phone | vnUsPhone }}</span>
 			</div>
 		</div>
 	</div>
@@ -185,7 +185,7 @@
 									data-vn-placeholder="Country"
 									data-ng-class="{ 'ng-invalid': address.country === '', 'ng-valid': countryEmpty === 'valid' }"
 									data-ng-model="address.country"
-									value="">
+									value="{{ address.country }}">
 
 								{{ address.country }}<span class="caret"></span>
 							</button>
