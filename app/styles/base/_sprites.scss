@@ -1,4 +1,4 @@
-@import "sprites/icons/*.png";
+@import "../../images/sprites/icons/*.png";
 @include all-icons-sprites;
 
 .th-product__new {
@@ -29,7 +29,7 @@
 
 // --------------------------------------------
 
-@import "sprites/social/*.png";
+@import "../../images/sprites/social/*.png";
 @include all-social-sprites;
 
 .th-social__icon--facebook {

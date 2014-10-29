@@ -1,14 +1,14 @@
-// Initialize with Compass and our custom helpers/mixins
-@import 'compass';
+// Initialize with help for our custom styles
+@import "compass-mixins/lib/_compass.scss";
 @import 'base/helpers';
 @import 'base/bootstrap-variables';
 
 // Import Bootstrap-Sass from Bower - we don't edit these
-@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
 
 // Import our fonts and customized Bootstrap variables
 @import 'base/fonts';
-@import 'base/sprites';
+//@import 'base/sprites';
 @import 'base/forms';
 
 // Import all 'th' (theme) stylesheets
