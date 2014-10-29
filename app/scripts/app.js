@@ -31,16 +31,12 @@ angular
 		'VolusionCheckout.services',
 		'VolusionCheckout.directives'
 	])
-	.config(['$routeProvider', '$locationProvider', '$httpProvider',
-		function ($routeProvider, $locationProvider, $httpProvider) {
+	.config(['$routeProvider', '$locationProvider',
+		function ($routeProvider, $locationProvider) {
 
 			'use strict';
 
 			$locationProvider.html5Mode(true);
-
-			$httpProvider.defaults.useXDomain = true;
-			$httpProvider.defaults.headers.common = 'Content-Type: application/json';
-			delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
 			$routeProvider
 				.when('/', {

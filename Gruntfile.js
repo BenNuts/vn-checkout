@@ -45,7 +45,7 @@ module.exports = function (grunt) {
 				tasks: ['newer:jshint:test', 'karma']
 			},
 			sass      : {
-				files: ['<%= yeoman.app %>/styles/**/*.scss', '<%= yeoman.app %>/components/**/*.scss'],
+				files: ['<%= yeoman.app %>/styles/**/*.scss', '<%= yeoman.app %>/scripts/**/*.scss'],
 				tasks: ['sass:server']
 			},
 			gruntfile : {
@@ -66,10 +66,10 @@ module.exports = function (grunt) {
 		// The actual grunt server settings
 		connect      : {
 			options   : {
-				port      : 9000,
+				port      : 9300,
 				// Change this to '0.0.0.0' to access the server from outside.
 				hostname  : 'localhost',
-				livereload: 35729
+				livereload: 35730
 			},
 			livereload: {
 				options: {
@@ -88,7 +88,7 @@ module.exports = function (grunt) {
 			},
 			test      : {
 				options: {
-					port      : 9001,
+					port      : 9301,
 					middleware: function (connect) {
 						return [
 							connect.static('.tmp'),
@@ -167,7 +167,7 @@ module.exports = function (grunt) {
 				ignorePath: /\.\.\//
 			},
 			sass: {
-				src       : ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+				src       : ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}', '<%= yeoman.app %>/scripts/**/*.scss'],
 				ignorePath: /(\.\.\/){1,2}bower_components\//
 			}
 		},
