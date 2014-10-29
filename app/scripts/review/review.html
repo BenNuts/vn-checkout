@@ -1,0 +1,58 @@
+<div class="th-checkout__review" data-ng-controller="ReviewCtrl">
+
+	<div class="review__totals">
+		<div class="review__totals__count">{{ checkout.cart.totals.qty }} item(s)</div>
+		<div class="review__totals__expand"><button data-ng-click="reviewItems = !reviewItems"><span></span></button></div>
+		<div class="review__totals__amount">{{ checkout.cart.totals.items | currency }}</div>
+
+		<br style="clear : both;">
+	</div>
+
+	<div class="review__items" data-ng-show="reviewItems">
+		<div class="review__items__item" data-ng-repeat="item in checkout.cart.items | reverse">
+			<div class="review__items__item-image">
+				<img data-ng-src="{{ item.imgUrl }}" />
+			</div>
+
+			<div class="review__items__item-info">
+				<div class="review__items__item-info--name">
+					<span>{{ item.name }}</span>
+				</div>
+
+				<div class="review__items__item-info--price">{{ item.pricing.unitPrice | currency }}</div>
+
+				<div class="review__items__item-info--option" data-ng-repeat="option in item.options">
+					<span>{{ option.optionText }}</span>
+				</div>
+
+				<div class="item-info-row">
+					<div class="review__items__item-info--qty">
+						<span>Qty</span>&nbsp;{{ item.qty }}
+					</div>
+					<div class="review__items__item-info--subtotal">{{ item.pricing.subtotal | currency }}</div>
+				</div>
+
+				<div class="item-info-row">
+					<div class="review__items__item-info--qty">
+						<span>Gift Wrap</span>
+					</div>
+					<div class="review__items__item-info--subtotal">{{ item.giftWrap.price | currency }}</div>
+				</div>
+
+				<div class="item-info-row">
+					<span>Message:</span>&nbsp;"{{ item.giftWrap.message }}"
+				</div>
+			</div>
+
+			<br style="clear: both;" />
+		</div>
+	</div>
+
+	<div class="review__discounts">
+
+		<div class="review__discounts_discount" data-ng-repeat="item in checkout.cart.items | reverse">
+
+		<br style="clear: both;" />
+	</div>
+
+</div>

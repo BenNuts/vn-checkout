@@ -1,0 +1,107 @@
+.th-checkout__review {
+	@include border-radius(10px);
+	border  : 2px solid $gray;
+	padding : 10px;
+	margin  : 15px;
+
+	.review {
+		&__totals {
+			&__expand {
+
+				float : left;
+
+				button {
+					border           : none;
+					background-color : transparent;
+					outline          : 0;
+					outline          : none;
+				}
+
+				span {
+					&:after {
+						font-family : 'FontAwesome';
+						content     : '\f00e'; // fa-search-plus
+						margin      : 0 5px;
+					}
+				}
+			}
+
+			&__count {
+				float : left;
+			}
+
+			&__amount {
+				float       : right;
+				font-size   : 1.5rem;
+				font-family : $font-family-condensed-reg;
+			}
+		}
+
+		&__items {
+
+			padding    : 5px 10px;
+			overflow-y : scroll;
+			height     : 100%;
+
+			// Add animation
+			/*-webkit-transition : all linear 0.5s;
+			transition         : all linear 0.5s;*/
+
+			/*&.ng-hide-add {
+				-webkit-transition : all linear 0.5s;
+				transition         : all linear 0.5s;
+			}
+			&.ng-hide-remove {
+				-webkit-transition : all linear 0.5s;
+				transition         : all linear 0.5s;
+			}*/
+
+			&--label {
+				text-transform : uppercase;
+			}
+
+			&__item {
+
+				position      : relative;
+				margin-bottom : 10px;
+				border-bottom : 1px solid $gray-lighter;
+
+				&-image {
+					float        : left;
+					margin-right : 10px;
+
+					img {
+						max-height : 80px;
+						max-width  : 80px;
+					}
+				}
+
+				&-info {
+					float      : right;
+					width      : 215px;
+					text-align : left;
+
+					.item-info-row {
+						position : relative;
+					}
+
+					&--name {
+						@include ellipsis(true);
+						text-transform : uppercase;
+					}
+
+					&--qty {
+					}
+
+					&--subtotal {
+						font-size   : 1.5rem;
+						font-family : $font-family-condensed-reg;
+						position    : absolute;
+						right       : 0;
+						top         : 0;
+					}
+				}
+			}
+		}
+	}
+}

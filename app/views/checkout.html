@@ -2,6 +2,13 @@
 	<div class="row">
 		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[0].active }" data-ng-switch="isEditable(1)">
 			<div class="th-checkout__step__overlay"></div>
+			<a href class="th-checkout__step__edit"
+			   data-ng-if="checkout.steps[1].active || checkout.steps[2].active"
+			   data-ng-click="setStep(1)">
+
+				Edit
+			</a>
+
 			<div class="th-checkout__step__title">
 				<span data-ng-if="checkout.steps[0].active">1</span>
 				<span data-ng-if="!checkout.steps[0].active"><i class="fa fa-check-circle"></i></span>
@@ -14,7 +21,7 @@
 			<div ng-include=" 'scripts/ship-method/ship-method.html' "></div>
 
 			<button class="btn btn-primary"
-					data-ng-switch-when="edit"
+					data-ng-if="checkout.steps[0].active"
 					data-ng-click="nextStep()"
 					data-ng-disabled="getShipToValid()" >
 
@@ -24,6 +31,13 @@
 		</div>
 		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[1].active }" data-ng-switch="isEditable(2)">
 			<div class="th-checkout__step__overlay"></div>
+			<a href class="th-checkout__step__edit"
+			   data-ng-if="checkout.steps[2].active"
+			   data-ng-click="setStep(2)">
+
+				Edit
+			</a>
+
 			<div class="th-checkout__step__title">
 				<span data-ng-if="checkout.steps[1].active">2</span>
 				<span data-ng-if="!checkout.steps[1].active"><i class="fa fa-check-circle"></i></span>
@@ -35,9 +49,24 @@
 
 			<hr />
 
+<<<<<<< Updated upstream
 			<button class="btn btn-primary" data-ng-switch-when="edit" data-ng-click="prevStep()"><i class="fa fa-angle-left">&nbsp;Back</i></button>
+=======
+			<div ng-include=" 'scripts/billing-address/billing-address.html' "></div>
+
+			<hr />
+
 			<button class="btn btn-primary"
-					data-ng-switch-when="edit"
+					data-ng-if="checkout.steps[1].active"
+					data-ng-click="prevStep()"
+					data-ng-disabled="getCreditCardValid() || getBillingAddressValid()">
+
+				<i class="fa fa-angle-left">&nbsp;Back</i>
+			</button>
+
+>>>>>>> Stashed changes
+			<button class="btn btn-primary"
+					data-ng-if="checkout.steps[1].active"
 					data-ng-click="nextStep()"
 					data-ng-disabled="getCreditCardValid()">
 
@@ -46,7 +75,22 @@
 		</div>
 		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[2].active }">
 			<div class="th-checkout__step__overlay"></div>
-			 Step 3 Here
+			<div class="th-checkout__step__review">
+				<span data-ng-if="checkout.steps[2].active">3</span>
+				<span data-ng-if="!checkout.steps[2].active"><i class="fa fa-check-circle"></i></span>
+				<br />
+				<span>Review</span>
+			</div>
+
+			<div ng-include=" 'scripts/review/review.html' "></div>
+
+			<button class="btn btn-primary"
+					data-ng-if="checkout.steps[2].active"
+					data-ng-click="setOrder()" >
+
+				Place Order
+			</button>
+
 		</div>
 	</div>
 </div>

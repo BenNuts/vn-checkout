@@ -11,6 +11,9 @@
 //@import 'base/sprites';
 @import 'base/forms';
 
+// Import all view's stylesheets
+@import '../scripts/review/review';
+
 // Import all 'th' (theme) stylesheets
 @import 'th-import';
 

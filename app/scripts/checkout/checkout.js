@@ -7,7 +7,7 @@
  */
 
 angular.module('VolusionCheckout.controllers')
-	.controller('CheckoutCtrl', ['$scope', 'vnCheckout', function ($scope, vnCheckout) {
+	.controller('CheckoutCtrl', ['$scope', 'vnCart', 'vnCheckout', function ($scope, vnCart, vnCheckout) {
 
 		'use strict';
 
@@ -25,11 +25,23 @@ angular.module('VolusionCheckout.controllers')
 			return !$scope.checkout.creditCardValid;
 		};
 
+		$scope.getBillingAddressValid = function () {
+			return !$scope.checkout.billToValid;
+		};
+
+		$scope.setStep = function (num) {
+			vnCheckout.setStep(num);
+		};
+
 		$scope.nextStep = function () {
 			vnCheckout.nextStep();
 		};
 
 		$scope.prevStep = function () {
 			vnCheckout.prevStep();
+		};
+
+		$scope.setOrder = function () {
+
 		};
 	}]);
