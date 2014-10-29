@@ -9,7 +9,10 @@
 	</div>
 
 	<div class="review__items" data-ng-show="reviewItems">
-		<div class="review__items__item" data-ng-repeat="item in checkout.cart.items | reverse">
+		<div class="review__items__item"
+			 data-ng-repeat="item in checkout.cart.items | reverse"
+			 data-ng-class="{'-last': $last}">
+
 			<div class="review__items__item-image">
 				<img data-ng-src="{{ item.imgUrl }}" />
 			</div>
@@ -32,14 +35,14 @@
 					<div class="review__items__item-info--subtotal">{{ item.pricing.subtotal | currency }}</div>
 				</div>
 
-				<div class="item-info-row">
+				<div class="item-info-row" data-ng-if="item.giftWrap.price > 0">
 					<div class="review__items__item-info--qty">
 						<span>Gift Wrap</span>
 					</div>
 					<div class="review__items__item-info--subtotal">{{ item.giftWrap.price | currency }}</div>
 				</div>
 
-				<div class="item-info-row">
+				<div class="item-info-row" data-ng-if="item.giftWrap.message != ''">
 					<span>Message:</span>&nbsp;"{{ item.giftWrap.message }}"
 				</div>
 			</div>
@@ -49,10 +52,40 @@
 	</div>
 
 	<div class="review__discounts">
-
-		<div class="review__discounts_discount" data-ng-repeat="item in checkout.cart.items | reverse">
-
-		<br style="clear: both;" />
+		<div class="review__discounts__discount" data-ng-repeat="discount in checkout.cart.discounts">
+			<div class="discount-info-row">
+				<div class="review__discounts__discount-info">
+					<span>{{ discount.name }}</span>
+				</div>
+				<div class="review__discounts__discount-info--subtotal">{{ discount.value | vnCurrency }}</div>
+			</div>
+		</div>
 	</div>
 
+	<div class="review__shipping-method">
+		<div class="shipping-method-info-row">
+			<div class=review__shipping-method-info">
+				<span>Shipping</span>
+			</div>
+			<div class="review__shipping-method-info--subtotal">{{ checkout.cart.totals.shipping | vnCurrency }}</div>
+		</div>
+	</div>
+
+	<div class="review__tax">
+		<div class="tax-info-row">
+			<div class=review__tax-info">
+				<span>Tax</span>
+			</div>
+			<div class="review__tax-info--subtotal">{{ checkout.cart.totals.taxTotal | currency }}</div>
+		</div>
+	</div>
+
+	<div class="review__grand-total">
+		<div class="grand-total-info-row">
+			<div class=review__grand-total-info">
+				<span>Grand Total</span>
+			</div>
+			<div class="review__grand-total-info--subtotal">{{ checkout.cart.totals.grandTotal | currency }}</div>
+		</div>
+	</div>
 </div>

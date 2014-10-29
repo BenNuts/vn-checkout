@@ -1,3 +1,11 @@
+%subtotal {
+	font-size   : 1.5rem;
+	font-family : $font-family-condensed-reg;
+	position    : absolute;
+	right       : 0;
+	top         : -3px;
+}
+
 .th-checkout__review {
 	@include border-radius(10px);
 	border  : 2px solid $gray;
@@ -6,6 +14,8 @@
 
 	.review {
 		&__totals {
+			border-bottom : 1px solid $gray-lighter;
+
 			&__expand {
 
 				float : left;
@@ -37,9 +47,79 @@
 			}
 		}
 
+		&__discounts {
+			border-bottom : 1px solid $gray-lighter;
+
+			&__discount {
+				margin : 5px 0;
+
+				.discount-info-row {
+					position : relative;
+				}
+
+				&-info {
+					text-align : left;
+
+					&--subtotal {
+						@extend %subtotal;
+					}
+				}
+			}
+		}
+
+		&__shipping-method {
+			border-bottom : 1px solid $gray-lighter;
+
+			.shipping-method-info-row {
+				position   : relative;
+				margin     : 5px 0;
+				text-align : left;
+			}
+
+			&-info {
+
+				&--subtotal {
+					@extend %subtotal;
+				}
+			}
+		}
+
+		&__tax {
+			border-bottom : 1px solid $gray-lighter;
+
+			.tax-info-row {
+				position   : relative;
+				margin     : 5px 0;
+				text-align : left;
+			}
+
+			&-info {
+
+				&--subtotal {
+					@extend %subtotal;
+				}
+			}
+		}
+
+		&__grand-total {
+
+			.grand-total-info-row {
+				position   : relative;
+				margin-top : 5px;
+				text-align : left;
+			}
+
+			&-info {
+
+				&--subtotal {
+					@extend %subtotal;
+				}
+			}
+		}
+
 		&__items {
 
-			padding    : 5px 10px;
+			padding    : 5px 0;
 			overflow-y : scroll;
 			height     : 100%;
 
@@ -66,6 +146,10 @@
 				margin-bottom : 10px;
 				border-bottom : 1px solid $gray-lighter;
 
+				&.-last {
+					margin-bottom : 0;
+				}
+
 				&-image {
 					float        : left;
 					margin-right : 10px;
@@ -77,9 +161,10 @@
 				}
 
 				&-info {
-					float      : right;
-					width      : 215px;
-					text-align : left;
+					float         : right;
+					width         : 215px;
+					text-align    : left;
+					margin-bottom : 5px;
 
 					.item-info-row {
 						position : relative;
@@ -94,11 +179,7 @@
 					}
 
 					&--subtotal {
-						font-size   : 1.5rem;
-						font-family : $font-family-condensed-reg;
-						position    : absolute;
-						right       : 0;
-						top         : 0;
+						@extend %subtotal;
 					}
 				}
 			}
