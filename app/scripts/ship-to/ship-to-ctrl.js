@@ -6,7 +6,7 @@
  * Controller of the vnCheckoutApp
  */
 angular.module('VolusionCheckout.controllers')
-		.controller('ShipToCtrl', ['$rootScope', '$scope', '$filter', 'vnCheckout', 'vnApi', function ($rootScope, $scope, $filter, vnCheckout, vnApi) {
+		.controller('ShipToCtrl', ['$rootScope', '$scope', '$filter', 'vnCheckout', 'vnApi', 'vnCart', function ($rootScope, $scope, $filter, vnCheckout, vnApi, vnCart) {
 
 			'use strict';
 
@@ -25,7 +25,7 @@ angular.module('VolusionCheckout.controllers')
 				city       : '',
 				state      : '',
 				region     : '',
-				postalcode : '',
+				postalCode : '',
 				country    : 'Unites States',
 				phoneNumber: ''
 			};
@@ -102,6 +102,8 @@ angular.module('VolusionCheckout.controllers')
 					// TODO : REMOVE THIS ***********************************************
 
 					angular.extend($scope.checkout.cart.shippingAddress, $scope.address);
+
+					vnCart.updateCart();
 
 				} else {
 					// TODO : REMOVE THIS ***********************************************

@@ -28,7 +28,8 @@ angular.module('VolusionCheckout.services')
 					],
 
 					/* TODO : set these to false after tests are done. */
-					shipToValid    : true,
+					shipToValid    : false,
+					shipMethodValid: false,
 					billToValid    : true,
 					creditCardValid: true
 					/***************************************************/
@@ -47,12 +48,12 @@ angular.module('VolusionCheckout.services')
 				checkout.shipToValid = bool;
 			}
 
-			function setCreditCardValidity(bool) {
-				checkout.creditCardValid = bool;
+			function setShipMethodValidity(bool) {
+				checkout.shipMethodValid = bool;
 			}
 
-			function setCart(cart) {
-				checkout.cart = cart.data;
+			function setCreditCardValidity(bool) {
+				checkout.creditCardValid = bool;
 			}
 
 			function setStep(num) {
@@ -90,6 +91,7 @@ angular.module('VolusionCheckout.services')
 			vnCart.initWithPromise()
 					.then(function (response) {
 						checkout.cart = response.data;
+						vnCart.set(checkout.cart);
 					});
 
 			return {
@@ -100,6 +102,7 @@ angular.module('VolusionCheckout.services')
 				setCreditCardValidity: setCreditCardValidity,
 				setBillToValidity    : setBillToValidity,
 				setShipToValidity    : setShipToValidity,
+				setShipMethodValidity: setShipMethodValidity,
 				toggleLocation       : toggleLocation
 			};
 		}]);

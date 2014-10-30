@@ -21,6 +21,10 @@ angular.module('VolusionCheckout.controllers')
 			return !$scope.checkout.shipToValid;
 		};
 
+		$scope.getShipMethodValid = function () {
+			return !$scope.checkout.shipMethodValid;
+		};
+
 		$scope.getCreditCardValid = function () {
 			return !$scope.checkout.creditCardValid;
 		};

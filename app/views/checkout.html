@@ -23,7 +23,7 @@
 			<button class="btn btn-primary"
 					data-ng-if="checkout.steps[0].active"
 					data-ng-click="nextStep()"
-					data-ng-disabled="getShipToValid()" >
+					data-ng-disabled="getShipToValid() || getShipMethodValid()" >
 
 					Continue&nbsp;<i class="fa fa-angle-right"></i>
 			</button>

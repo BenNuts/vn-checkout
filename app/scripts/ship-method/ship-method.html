@@ -1,5 +1,5 @@
 <div class="th-checkout__ship-method" data-ng-controller="ShipMethodCtrl" data-ng-switch="isEditable()">
-	<div data-ng-show="cart.shippingMethods.length == 0"
+	<div data-ng-show="checkout.cart.shippingMethods.length == 0"
 		 data-ng-switch-when="edit" >
 
 		<hr />
@@ -8,9 +8,9 @@
 	</div>
 
 	<div class="th-checkout__ship-method__method"
-		 data-ng-show="cart.shippingMethods.length > 0"
+		 data-ng-show="checkout.cart.shippingMethods.length > 0"
 		 data-ng-switch-when="edit"
-		 data-ng-repeat="method in cart.shippingMethods" >
+		 data-ng-repeat="method in checkout.cart.shippingMethods" >
 
 		<div class="styled-checkbox-option">
 			<input type="radio" id="{{ $index }}" name="shipping" value="true"
@@ -28,8 +28,8 @@
 		 data-ng-switch-when="show" >
 
 		<hr />
-		<div class="th-checkout__ship-method__display__name">{{ cart.shippingMethods[currentShippingMethodIdx].name }}</div>
-		<div class="th-checkout__ship-method__display__price">{{ cart.shippingMethods[currentShippingMethodIdx].price | vnCurrency }}</div>
+		<div class="th-checkout__ship-method__display__name">{{ checkout.cart.shippingMethods[currentShippingMethodIdx].name }}</div>
+		<div class="th-checkout__ship-method__display__price">{{ checkout.cart.shippingMethods[currentShippingMethodIdx].price | vnCurrency }}</div>
 		<br style="clear: both;">
 		<hr />
 

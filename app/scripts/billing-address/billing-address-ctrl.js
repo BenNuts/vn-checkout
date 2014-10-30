@@ -136,8 +136,4 @@ angular.module('VolusionCheckout.controllers')
 				}
 			};
 
-			$rootScope.$on('vnShippingAddress.updated', function (evt, address) {
-				$scope.shippingAddress = address;
-			});
-
 		}]);
