@@ -20,11 +20,11 @@ angular.module('VolusionCheckout.services')
 						image: IMAGE_US
 					},
 					cart           : {},
-					currentStep    : 3,
+					currentStep    : 1,
 					steps          : [
+						{'active': true},
 						{'active': false},
-						{'active': false},
-						{'active': true}
+						{'active': false}
 					],
 
 					/* TODO : set these to false after tests are done. */

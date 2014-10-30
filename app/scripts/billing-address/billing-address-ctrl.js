@@ -22,17 +22,16 @@ angular.module('VolusionCheckout.controllers')
 			$scope.check.useShippingAddress = false;
 
 			$scope.billingAddress = {
-				fname             : '',
-				lname             : '',
-				line1             : '',
-				line2             : '',
-				city              : '',
-				state             : '',
-				region            : '',
-				zip               : '',
-				postalcode        : '',
-				country           : 'United States',
-				phone             : ''
+				firstName  : '',
+				lastName   : '',
+				address1   : '',
+				address2   : '',
+				city       : '',
+				state      : '',
+				region     : '',
+				postalCode : '',
+				country    : 'United States',
+				phoneNumber: ''
 			};
 
 			$scope.countries = [];
@@ -60,7 +59,7 @@ angular.module('VolusionCheckout.controllers')
 
 			$scope.setBillingAddress = function () {
 				if ($scope.check.useShippingAddress) {
-					angular.copy($scope.shippingAddress, $scope.billingAddress);
+					angular.copy($scope.checkout.cart.shippingAddress, $scope.billingAddress);
 
 				} else {
 
@@ -126,6 +125,9 @@ angular.module('VolusionCheckout.controllers')
 					// TODO : REMOVE THIS ***********************************************
 					$rootScope.$emit('vnBiilingAddress.updated');
 					// TODO : REMOVE THIS ***********************************************
+
+					angular.extend($scope.checkout.cart.billingAddress, $scope.billingAddress);
+
 				} else {
 					// TODO : REMOVE THIS ***********************************************
 					$rootScope.$emit('vnBillingAddress.failed');

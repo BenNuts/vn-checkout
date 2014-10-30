@@ -10,12 +10,12 @@
 	<div class="th-checkout__ship-to__display" data-ng-switch-when="show">
 		<div class="row">
 			<div class="col-xs-12">
-				<span>{{ address.fname }}&nbsp;{{ address.lname }}</span>
+				<span>{{ address.firstName }}&nbsp;{{ address.lastName }}</span>
 				<br />
-				<span>{{ address.line1 }}</span>
+				<span>{{ address.address1 }}</span>
 				<br />
-				<span data-ng-if="address.line2 != ''">{{ address.line2 }}</span>
-				<br data-ng-if="address.line2 != ''" />
+				<span data-ng-if="address.address2 != ''">{{ address.address2 }}</span>
+				<br data-ng-if="address.address2 != ''" />
 				<span data-ng-show="isLocationUS">{{ address.city }},&nbsp;{{ address.state }}&nbsp;{{ address.zip }}</span>
 				<br />
 				<div class="row" data-ng-show="!isLocationUS">
@@ -26,7 +26,7 @@
 					<span>{{ address.country }}</span>
 					<br />
 				</div>
-				<span>{{ address.phone }}</span>
+				<span>{{ address.phoneNumber }}</span>
 			</div>
 		</div>
 	</div>
@@ -39,7 +39,7 @@
 						<input type="text"
 							   id="inputShipToUSFirstName" class="form-control immediate-help"
 							   data-vn-placeholder="First Name"
-							   data-ng-model="address.fname"
+							   data-ng-model="address.firstName"
 							   data-ng-blur="updateShippingAddress()"
 							   data-vn-first-name-validate required/>
 						<div class="input-help bottom">
@@ -57,7 +57,7 @@
 						<input type="text" id="inputShipToUSLastName"
 							   class="form-control -right immediate-help"
 							   data-vn-placeholder="Last Name"
-							   data-ng-model="address.lname"
+							   data-ng-model="address.lastName"
 							   data-ng-blur="updateShippingAddress()"
 							   data-last-name-validate required />
 						<div class="input-help bottom-right">
@@ -74,10 +74,10 @@
 			<div class="row" data-ng-switch-when="edit">
 				<div class="col-xs-12">
 					<div class="form-group">
-						<input type="text" id="inputShipToUSAddressLine1"
+						<input type="text" id="inputShipToUSAddressaddress1"
 							   class="form-control immediate-help"
 							   data-vn-placeholder="Address Line 1"
-							   data-ng-model="address.line1"
+							   data-ng-model="address.address1"
 							   data-ng-blur="updateShippingAddress()"
 							   data-street-validate required />
 						<div class="input-help bottom">
@@ -97,7 +97,7 @@
 						<input type="text" id="inputShipToUSAddressLine2"
 							   class="form-control"
 							   data-vn-placeholder="Address Line 2"
-							   data-ng-model="address.line2"/>
+							   data-ng-model="address.address2"/>
 					</div>
 				</div>
 			</div>
@@ -160,7 +160,7 @@
 							   class="form-control immediate-help"
 							   data-vn-placeholder="Zip"
 							   data-ng-blur="updateShippingAddress('zip')"
-							   data-ng-model="address.zip"
+							   data-ng-model="address.postalCode"
 							   data-zip-validate required />
 						<div class="input-help top">
 							<div class="arrow"></div>
@@ -235,7 +235,8 @@
 						<input type="text" id="inputShipToUSPhoneNumber"
 							   class="form-control"
 							   data-vn-placeholder="Phone Number"
-							   data-ng-model="address.phone"
+							   data-ng-model="address.phoneNumber"
+							   data-ng-blur="updateShippingAddress()"
 							   data-vn-format-us-phone-number />
 					</div>
 				</div>

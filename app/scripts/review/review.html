@@ -62,6 +62,15 @@
 		</div>
 	</div>
 
+	<div class="review__store-credit" data-ng-if="checkout.cart.customer.storeCredit != 0">
+		<div class="store-credit-info-row">
+			<div class="review__store-credit-info">
+				<span>Store Credit</span>
+			</div>
+			<div class="review__store-credit-info--subtotal">{{ checkout.cart.customer.storeCredit | vnCurrency }}</div>
+		</div>
+	</div>
+
 	<div class="review__shipping-method">
 		<div class="shipping-method-info-row">
 			<div class=review__shipping-method-info">

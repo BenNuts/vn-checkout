@@ -4,14 +4,14 @@
 		<input type="checkbox" id="chkBillingAddress" name="chkBillingAddress" value="true"
 			   data-ng-model="check.useShippingAddress"
 			   data-ng-change="setBillingAddress()"/>
-		<label for="chkBillingAddress">&nbsp;{{ shippingAddress.line1 }}&nbsp; is also my billing address</label>
+		<label for="chkBillingAddress">&nbsp;{{ shippingAddress.address1 }}&nbsp; is also my billing address</label>
 	</div>
 
 	<!--Display only-->
 	<div class="styled-checkbox-option" data-ng-switch-when="show" data-ng-show="check.useShippingAddress">
 		<input type="checkbox" id="chkBillingAddressDisplay" name="chkBillingAddressDisplay" value="true"
 			   data-ng-model="check.useShippingAddress"/>
-		<label for="chkBillingAddressDisplay">&nbsp;{{ shippingAddress.line1 }}&nbsp; is also my billing address</label>
+		<label for="chkBillingAddressDisplay">&nbsp;{{ shippingAddress.address1 }}&nbsp; is also my billing address</label>
 	</div>
 
 	<div data-ng-switch-when="show" data-ng-show="!check.useShippingAddress && shippingAddress !== null">
@@ -23,12 +23,12 @@
 
 		<div class="row">
 			<div class="col-xs-12">
-				<span>{{ billingAddress.fname }}&nbsp;{{ billingAddress.lname }}</span>
+				<span>{{ billingAddress.firstName }}&nbsp;{{ billingAddress.lastName }}</span>
 				<br />
-				<span>{{ billingAddress.line1 }}</span>
+				<span>{{ billingAddress.address1 }}</span>
 				<br />
-				<span data-ng-if="billingAddress.line2 != ''">{{ billingAddress.line2 }}</span>
-				<br data-ng-if="billingAddress.line2 != ''" />
+				<span data-ng-if="billingAddress.address2 != ''">{{ billingAddress.address2 }}</span>
+				<br data-ng-if="billingAddress.address2 != ''" />
 				<span data-ng-show="isLocationUS">{{ billingAddress.city }},&nbsp;{{ billingAddress.state }}&nbsp;{{ billingAddress.zip }}</span>
 				<br />
 				<div class="row" data-ng-show="!isLocationUS">
@@ -39,7 +39,7 @@
 					<span>{{ billingAddress.country }}</span>
 					<br />
 				</div>
-				<span>{{ billingAddress.phone }}</span>
+				<span>{{ billingAddress.phoneNumber }}</span>
 			</div>
 		</div>
 	</div>
@@ -61,7 +61,7 @@
 							   id="inputBillingUSFirstName" name="inputBillingUSFirstName"
 							   class="form-control immediate-help"
 							   data-vn-placeholder="First Name"
-							   data-ng-model="billingAddress.fname"
+							   data-ng-model="billingAddress.firstName"
 							   data-ng-blur="updateBillingAddress()"
 							   data-vn-first-name-validate required/>
 
@@ -75,7 +75,7 @@
 							   id="inputBillingUSLastName"  name="inputBillingUSLastName"
 							   class="form-control -right immediate-help"
 							   data-vn-placeholder="Last Name"
-							   data-ng-model="billingAddress.lname"
+							   data-ng-model="billingAddress.lastName"
 							   data-ng-blur="updateBillingAddress()"
 							   data-vn-last-name-validate required/>
 
@@ -88,10 +88,10 @@
 				<div class="col-xs-12">
 					<div class="form-group">
 						<input type="text"
-							   id="inputBillingUSAddressLine1" name="inputBillingUSAddressLine1"
+							   id="inputBillingUSAddressaddress1" name="inputBillingUSAddressaddress1"
 							   class="form-control immediate-help"
 							   data-vn-placeholder="Address Line 1"
-							   data-ng-model="billingAddress.line1"
+							   data-ng-model="billingAddress.address1"
 							   data-ng-blur="updateBillingAddress()"
 							   data-vn-street-validate required/>
 
@@ -107,7 +107,7 @@
 							   id="inputBillingUSAddressLine2" name="inputBillingUSAddressLine2"
 							   class="form-control"
 							   data-vn-placeholder="Address Line 2"
-							   data-ng-model="billingAddress.line2"/>
+							   data-ng-model="billingAddress.address2"/>
 					</div>
 				</div>
 			</div>
@@ -163,7 +163,7 @@
 							   class="form-control immediate-help"
 							   data-vn-placeholder="Zip"
 							   data-ng-blur="updateBillingAddress('zip')"
-							   data-ng-model="billingAddress.zip"
+							   data-ng-model="billingAddress.postalCode"
 							   data-vn-zip-validate required/>
 
 						<data-vn-popover-zip />
@@ -242,7 +242,8 @@
 							   id="inputBillingUSPhoneNumber" name="inputBillingUSPhoneNumber"
 							   class="form-control"
 							   data-vn-placeholder="Phone Number"
-							   data-ng-model="billingAddress.phone"
+							   data-ng-model="billingAddress.phoneNumber"
+							   data-ng-blur="updateBillingAddress()"
 							   data-vn-format-us-phone-number/>
 					</div>
 				</div>

@@ -67,6 +67,23 @@
 			}
 		}
 
+		&__store-credit {
+			border-bottom : 1px solid $gray-lighter;
+
+			.store-credit-info-row {
+				position   : relative;
+				margin     : 5px 0;
+				text-align : left;
+			}
+
+			&-info {
+
+				&--subtotal {
+					@extend %subtotal;
+				}
+			}
+		}
+
 		&__shipping-method {
 			border-bottom : 1px solid $gray-lighter;
 
