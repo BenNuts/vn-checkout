@@ -7,7 +7,7 @@
  */
 
 angular.module('VolusionCheckout.services')
-		.factory('vnCheckout', ['vnCart', function (vnCart) {
+		.factory('vnCheckout', ['vnSiteConfig', 'vnCart', function (vnSiteConfig, vnCart) {
 
 			'use strict';
 
@@ -15,15 +15,19 @@ angular.module('VolusionCheckout.services')
 				IMAGE_WW = 'images/worldwide-flag.png',
 
 				checkout = {
+					config : {
+
+						PCIaaS : {}
+					},
 					location       : {
 						label: 'us',
 						image: IMAGE_US
 					},
 					cart           : {},
-					currentStep    : 1,
+					currentStep    : 2,
 					steps          : [
-						{'active': true},
 						{'active': false},
+						{'active': true},
 						{'active': false}
 					],
 
@@ -93,6 +97,11 @@ angular.module('VolusionCheckout.services')
 						checkout.cart = response.data;
 						vnCart.set(checkout.cart);
 					});
+
+			vnSiteConfig.getConfig().then(function (response) {
+				checkout.config = response.data.checkout;
+				checkout.config.PCIaaS = response.data.PCIaaS;
+			});
 
 			return {
 				get                  : get,

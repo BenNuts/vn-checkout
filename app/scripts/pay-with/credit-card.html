@@ -26,7 +26,7 @@
 							   data-vn-placeholder="Credit card number"
 							   data-ng-model="payment.ccNumber"
 							   data-ng-blur="updateCreditCard('cc')"
-							   data-format-cc-number data-cc-validate required />
+							   data-vn-format-cc-number data-vn-cc-validate required />
 						<div class="input-help top-left">
 							<div class="arrow"></div>
 							<h4>Credit card must:</h4>
@@ -45,7 +45,7 @@
 							   data-ng-model="payment.ccCvv"
 							   data-ng-focus="setCCImage()"
 							   data-ng-blur="setCCImage('reset'); updateCreditCard('cvv')"
-							   data-cvv-validate required />
+							   data-vn-cvv-validate required />
 						<div class="input-help top">
 							<div class="arrow"></div>
 							<h4>CVV must:</h4>
@@ -69,7 +69,7 @@
 									data-set-focus-if="expDateInvalid"
 									data-vn-placeholder="MM"
 									data-ng-model="payment.ccExpMonth"
-									value="" >
+									value="{{ payment.ccExpMonth }}" >
 
 								{{ payment.ccExpMonth }}<span class="caret"></span>
 							</button>
@@ -103,7 +103,7 @@
 									data-ng-class="{ 'ng-invalid': payment.ccExpYear === '' || expDateInvalid === undefined }"
 									data-vn-placeholder="YY"
 									data-ng-model="payment.ccExpYear"
-									value="">
+									value="{{ payment.ccExpYear }}">
 
 								{{ payment.ccExpYear }}<span class="caret"></span>
 							</button>

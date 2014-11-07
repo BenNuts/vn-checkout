@@ -6,7 +6,7 @@
  * Controller of the vnCheckoutApp
  */
 angular.module('VolusionCheckout.controllers')
-	.controller('CreditCardCtrl', ['$scope', '$filter', 'vnCheckout', 'vnApi', function ($scope, $filter, vnCheckout, vnApi) { // jshint ignore:line
+	.controller('CreditCardCtrl', ['$scope', '$filter', 'vnCheckout', 'vnPayment', function ($scope, $filter, vnCheckout, vnPayment) { // jshint ignore:line
 
 		'use strict';
 
@@ -70,10 +70,10 @@ angular.module('VolusionCheckout.controllers')
 		};
 
 		$scope.payment = {
-			ccNumber       : '',
-			ccCvv          : '',
-			ccExpMonth     : '',
-			ccExpYear      : '',
+			ccNumber       : '4111111111111111',
+			ccCvv          : '123',
+			ccExpMonth     : '08',
+			ccExpYear      : '17',
 			ccHolderName   : '',
 
 			// for display purposes
@@ -190,7 +190,17 @@ angular.module('VolusionCheckout.controllers')
 			vnCheckout.setCreditCardValidity($scope.frmCreditCard.$valid);
 
 			if ($scope.frmCreditCard.$valid) {
-			} else {
+
+				// Call Volusion's payment service
+				vnPayment.setPersistCard(true);
+				//vnPayment.setCardHolderName($scope.payment.ccHolderName);
+				vnPayment.setCardNumber($scope.payment.ccNumber);
+				vnPayment.setCvv($scope.payment.ccCvv);
+				//vnPayment.setExpireMonth($scope.payment.ccExpMonth);
+				//vnPayment.setExpireYear($scope.payment.ccExpYear);
+				vnPayment.setCardType($scope.payment.ccType);
+
+				vnPayment.process();
 			}
 		};
 

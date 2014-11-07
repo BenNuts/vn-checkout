@@ -7,6 +7,13 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest,
+	modRewrite   = require('connect-modrewrite'),
+	appConfig = {
+		app : 'app',
+		dist: 'dist'
+	};
+
 module.exports = function (grunt) {
 
 	// Load grunt tasks automatically
@@ -16,10 +23,10 @@ module.exports = function (grunt) {
 	require('time-grunt')(grunt);
 
 	// Configurable paths for the application
-	var appConfig = {
-		app : require('./bower.json').appPath || 'app',
-		dist: 'dist'
-	};
+//	var appConfig = {
+//		app : require('./bower.json').appPath || 'app',
+//		dist: 'dist'
+//	};
 
 	// Define the configuration for all the tasks
 	grunt.initConfig({
@@ -64,7 +71,7 @@ module.exports = function (grunt) {
 		},
 
 		// The actual grunt server settings
-		connect      : {
+		/*connect      : {
 			options   : {
 				port      : 9300,
 				// Change this to '0.0.0.0' to access the server from outside.
@@ -105,6 +112,66 @@ module.exports = function (grunt) {
 			dist      : {
 				options: {
 					open: true,
+					base: '<%= yeoman.dist %>'
+				}
+			}
+		},*/
+
+		// The actual grunt server settings
+		connect: {
+			options: {
+				port: 9300,
+				// Change this to '0.0.0.0' to access the server from outside.
+				hostname: 'localhost',
+				livereload: 35730
+			},
+			rules: [
+				{ from: '^/(bower_components|fonts|images|scripts|styles|translations|views)(/.*)$', to: '/$1$2' },
+				{ from: '^/404.html', to: '/404.html' },
+				{ from: '^/(.*)$', to: '/index.html' }
+			],
+			livereload: {
+				options: {
+					open: true,
+					middleware: function (connect) {
+						return [
+							proxySnippet,
+							modRewrite([
+								//'^/storefront/api/(.*)$ https://t9127-s11628.sandbox.mozu.com/api/$1 [P]',
+								'^/paymentsv1_4/cards$ https://payments-qa.dev.volusion.com/paymentsv1_4/cards [P]',
+								'^[^\\.]*$ /index.html [L]']),
+							connect.static('.tmp'),
+							connect().use(
+									'/bower_components',
+									connect.static('./bower_components')
+							),
+							connect.static(appConfig.app)
+						];
+					}
+				}
+			},
+			proxies   : [
+				{
+					context     : '/paymentsv1_4/cards',
+					host        : 'payments-qa.dev.volusion.com',
+					port        : 443,
+					https       : true,
+					xforward    : false,
+					changeOrigin: true
+				}
+			],
+			test: {
+				options: {
+					port: 9301,
+					base: [
+						'.tmp',
+						'test',
+						'<%= yeoman.app %>'
+					]
+				}
+			},
+			dist: {
+				options: {
 					base: '<%= yeoman.dist %>'
 				}
 			}

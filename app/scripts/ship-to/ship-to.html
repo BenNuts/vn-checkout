@@ -59,7 +59,7 @@
 							   data-vn-placeholder="Last Name"
 							   data-ng-model="address.lastName"
 							   data-ng-blur="updateShippingAddress()"
-							   data-last-name-validate required />
+							   data-vn-last-name-validate required />
 						<div class="input-help bottom-right">
 							<div class="arrow"></div>
 							<h4>Last name must:</h4>
@@ -77,9 +77,10 @@
 						<input type="text" id="inputShipToUSAddressaddress1"
 							   class="form-control immediate-help"
 							   data-vn-placeholder="Address Line 1"
+							   data-vn-placeholder-short="Address"
 							   data-ng-model="address.address1"
 							   data-ng-blur="updateShippingAddress()"
-							   data-street-validate required />
+							   data-vn-street-validate required />
 						<div class="input-help bottom">
 							<div class="arrow"></div>
 							<h4>Address must:</h4>
@@ -109,7 +110,7 @@
 							   data-vn-placeholder="City"
 							   data-ng-model="address.city"
 							   data-ng-blur="updateShippingAddress()"
-							   data-city-validate required />
+							   data-vn-city-validate required />
 						<div class="input-help top-left">
 							<div class="arrow"></div>
 							<h4>City must:</h4>
@@ -129,7 +130,7 @@
 									data-ng-class="{ 'ng-invalid': address.state === '', 'ng-valid': stateEmpty === 'valid' }"
 									data-vn-placeholder="State"
 									data-ng-model="address.state"
-									value="" >
+									value="{{ address.state }}" >
 
 								{{ address.state }}<span class="caret"></span>
 							</button>
@@ -161,7 +162,7 @@
 							   data-vn-placeholder="Zip"
 							   data-ng-blur="updateShippingAddress('zip')"
 							   data-ng-model="address.postalCode"
-							   data-zip-validate required />
+							   data-vn-zip-validate required />
 						<div class="input-help top">
 							<div class="arrow"></div>
 							<h4>Zip code must:</h4>
