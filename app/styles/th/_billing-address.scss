@@ -6,8 +6,23 @@
 		text-align : center;
 		padding    : 10px;
 
-		img {
-			height : 20px;
+		&--link {
+			height            : 20px;
+			display           : block;
+			background-repeat : no-repeat;
+			margin            : 0 auto;
+
+			&.-us {
+				background-image : url('/images/us-flag.png');
+				width            : 35px;
+				background-size  : 35px 20px;
+			}
+
+			&.-worldwide {
+				background-image : url('/images/worldwide-flag.png');
+				width            : 20px;
+				background-size  : 20px 20px;
+			}
 		}
 	}
 
@@ -15,8 +30,8 @@
 		position : relative;
 
 		.dropdown-menu {
-			min-width: 150px;
-			width: 100%;
+			min-width : 150px;
+			width     : 100%;
 		}
 	}
 
