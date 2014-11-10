@@ -7,7 +7,7 @@
 		<div class="credit-card__display" data-ng-switch-when="show">
 			<div class="row">
 				<div class="col-xs-12">
-					<span class="credit-card__display--bold">{{ payment.ccNumber }}</span>
+					<span class="credit-card__display--bold">{{ payment.cardNumber }}</span>
 					<br />
 					<span>{{ displayExpDate() }}</span>
 					<br />
@@ -24,9 +24,12 @@
 							   id="inputCreditCardNumber" name="inputCreditCardNumber"
 							   class="form-control immediate-help"
 							   data-vn-placeholder="Credit card number"
-							   data-ng-model="payment.ccNumber"
+							   data-ng-model="payment.cardNumber"
 							   data-ng-blur="updateCreditCard('cc')"
-							   data-vn-format-cc-number data-vn-cc-validate required />
+							   data-vn-format-cc-number
+							   data-vn-cc-validate
+							   data-vn-cc-type="{{ payment.CardType }}"
+							   required />
 						<div class="input-help top-left">
 							<div class="arrow"></div>
 							<h4>Credit card must:</h4>
@@ -42,10 +45,12 @@
 							   id="inputCreditCardCVV" name="inputCreditCardCVV"
 							   class="form-control immediate-help"
 							   data-vn-placeholder="CVV"
-							   data-ng-model="payment.ccCvv"
+							   data-ng-model="payment.CVV"
 							   data-ng-focus="setCCImage()"
 							   data-ng-blur="setCCImage('reset'); updateCreditCard('cvv')"
-							   data-vn-cvv-validate required />
+							   data-vn-cvv-validate
+							   data-vn-cc-type="{{ payment.CardType }}"
+							   required />
 						<div class="input-help top">
 							<div class="arrow"></div>
 							<h4>CVV must:</h4>
@@ -65,13 +70,13 @@
 							<button id="inputCreditCardExpMonth" name="inputCreditCardExpMonth"
 									class="btn btn-default dropdown-toggle form-control immediate-help"
 									data-toggle="dropdown"
-									data-ng-class="{ 'ng-invalid': payment.ccExpMonth === '' || expDateInvalid === undefined, 'ng-valid': expDateInvalid === 'valid' }"
+									data-ng-class="{ 'ng-invalid': payment.ExpireMonth === '' || expDateInvalid === undefined, 'ng-valid': expDateInvalid === 'valid' }"
 									data-set-focus-if="expDateInvalid"
 									data-vn-placeholder="MM"
-									data-ng-model="payment.ccExpMonth"
-									value="{{ payment.ccExpMonth }}" >
+									data-ng-model="payment.ExpireMonth"
+									value="{{ payment.ExpireMonth }}" >
 
-								{{ payment.ccExpMonth }}<span class="caret"></span>
+								{{ payment.ExpireMonth }}<span class="caret"></span>
 							</button>
 							<div class="input-help top-left -dropdown">
 								<div class="arrow"></div>
@@ -100,12 +105,12 @@
 							<button id="inputCreditCardExpYear" name="inputCreditCardExpYear"
 									class="btn btn-default dropdown-toggle form-control"
 									data-toggle="dropdown"
-									data-ng-class="{ 'ng-invalid': payment.ccExpYear === '' || expDateInvalid === undefined }"
+									data-ng-class="{ 'ng-invalid': payment.ExpireYear === '' || expDateInvalid === undefined }"
 									data-vn-placeholder="YY"
-									data-ng-model="payment.ccExpYear"
-									value="{{ payment.ccExpYear }}">
+									data-ng-model="payment.ExpireYear"
+									value="{{ payment.ExpireYear }}">
 
-								{{ payment.ccExpYear }}<span class="caret"></span>
+								{{ payment.ExpireYear }}<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
 								<li ng-repeat="year in rangeYears() track by $index">
