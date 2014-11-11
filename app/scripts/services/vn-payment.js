@@ -21,7 +21,7 @@ angular.module('VolusionCheckout.services')
 						base  : {
 							uri: function () {
 								//return checkout.config.PCIaaS.url + '/cards/';
-								return '/paymentsv1_4/cards';
+								return '/paymentsv1_4/cards/';
 							}
 						},
 						save  : {
@@ -32,15 +32,13 @@ angular.module('VolusionCheckout.services')
 						},
 						update: {
 							uri   : function (cardId) {
-								return apiCall.base.uri() + '/' + cardId.toString();
+								return apiCall.base.uri() + cardId.toString();
 							},
 							method: 'PUT'
 						}
 					},
-					// modifiable fields
-					// not sure about the implementation so this may be not needed
 					cardInfo = {
-						cardNumber	  : '41111111111111111',
+						cardNumber	  : '',
 						mask		  : {},
 
 						MerchantId    : '3de067d8d96d407697da4a9559f99681',  //checkout.config.PCIaaS.merchantId,
@@ -49,8 +47,8 @@ angular.module('VolusionCheckout.services')
 						CardHolderName: '',
 						ExpireMonth   : '',
 						ExpireYear    : '',
-						CVV           : '123',
-						CardType      : 'VISA'
+						CVV           : '',
+						CardType      : ''
 					};
 
 			function getCard() {
@@ -95,6 +93,12 @@ angular.module('VolusionCheckout.services')
 				}
 
 				return true;
+			}
+
+			function maskCardInfo() {
+				cardInfo.CVV = cardInfo.CVV.replace(/./g, DEFAULTS.maskCharacter);
+				cardInfo.cardNumber = cardInfo.mask.display;
+				cardInfo.mask.sent = '';
 			}
 
 			// create a mask using the regex, and return an object containing two strings with opposite chars masked
@@ -167,8 +171,8 @@ angular.module('VolusionCheckout.services')
 				if (cardInfo.CardID !== '') {
 					vnPCIaaS.Card(apiCall.update.uri(cardInfo.CardID), cardInfo.MerchantId)
 							.update(payload).$promise
-							.then(function (response) {
-								console.log(response);
+							.then(function (response) {  // jshint ignore:line
+								maskCardInfo();
 							})
 							.catch(function (response) {
 								console.log(response);
@@ -187,8 +191,7 @@ angular.module('VolusionCheckout.services')
 								}
 
 								cardInfo.CardID = token;
-								cardInfo.cardNumber = cardInfo.mask.display;
-								cardInfo.mask.sent = '';
+								maskCardInfo();
 							})
 							.catch(function (response) {
 								console.log(response);

@@ -71,53 +71,6 @@ module.exports = function (grunt) {
 		},
 
 		// The actual grunt server settings
-		/*connect      : {
-			options   : {
-				port      : 9300,
-				// Change this to '0.0.0.0' to access the server from outside.
-				hostname  : 'localhost',
-				livereload: 35730
-			},
-			livereload: {
-				options: {
-					open      : true,
-					middleware: function (connect) {
-						return [
-							connect.static('.tmp'),
-							connect().use(
-									'/bower_components',
-									connect.static('./bower_components')
-							),
-							connect.static(appConfig.app)
-						];
-					}
-				}
-			},
-			test      : {
-				options: {
-					port      : 9301,
-					middleware: function (connect) {
-						return [
-							connect.static('.tmp'),
-							connect.static('test'),
-							connect().use(
-									'/bower_components',
-									connect.static('./bower_components')
-							),
-							connect.static(appConfig.app)
-						];
-					}
-				}
-			},
-			dist      : {
-				options: {
-					open: true,
-					base: '<%= yeoman.dist %>'
-				}
-			}
-		},*/
-
-		// The actual grunt server settings
 		connect: {
 			options: {
 				port: 9300,
@@ -137,7 +90,7 @@ module.exports = function (grunt) {
 						return [
 							proxySnippet,
 							modRewrite([
-								//'^/storefront/api/(.*)$ https://t9127-s11628.sandbox.mozu.com/api/$1 [P]',
+								'^/paymentsv1_4/cards/(.*)$ https://payments-qa.dev.volusion.com/paymentsv1_4/cards/$1 [P]',
 								'^/paymentsv1_4/cards$ https://payments-qa.dev.volusion.com/paymentsv1_4/cards [P]',
 								'^[^\\.]*$ /index.html [L]']),
 							connect.static('.tmp'),
@@ -152,7 +105,7 @@ module.exports = function (grunt) {
 			},
 			proxies   : [
 				{
-					context     : '/paymentsv1_4/cards',
+					context     : '/paymentsv1_4/cards/*',
 					host        : 'payments-qa.dev.volusion.com',
 					port        : 443,
 					https       : true,

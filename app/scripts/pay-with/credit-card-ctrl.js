@@ -12,6 +12,7 @@ angular.module('VolusionCheckout.controllers')
 
 		var PAY_WITH = 2;
 
+		$scope.cvvLength = 3;
 		$scope.expDateInvalid = 'valid';
 
 		function setCreditCardInfo() {
@@ -74,7 +75,7 @@ angular.module('VolusionCheckout.controllers')
 			return ret;
 		};
 
-			$scope.payment = vnPayment.getCard();
+		$scope.payment = vnPayment.getCard();
 
 		/*$scope.payment = {
 			ccNumber       : '4111111111111111',
@@ -134,13 +135,13 @@ angular.module('VolusionCheckout.controllers')
 			return exp;
 		};
 
-		$scope.updateCreditCard = function (forElem) {
+		$scope.updateCreditCard = function () {
 
 			var plainNumber;
 			// Compensatory measure(s) as we do not want to show error bubble while users are still entering  [semi] valid values
 
 			// CC validatior will accept any number with length less than 15/16 ... so on blur we have to check if CCNumber is really valid
-			if (forElem !== undefined && forElem === 'cc') {
+			if ($scope.frmCreditCard.inputCreditCardNumber.$viewValue.indexOf('*') === -1) {
 				plainNumber = $scope.frmCreditCard.inputCreditCardNumber.$viewValue.replace(/[^\d]+/g, '');
 				var ccNumberLength = 16;
 
@@ -153,17 +154,16 @@ angular.module('VolusionCheckout.controllers')
 				}
 			}
 
-			if (forElem !== undefined && forElem === 'cvv') {
-
+			if ($scope.frmCreditCard.inputCreditCardNumber.$viewValue.indexOf('*') === -1) {
 				plainNumber = $scope.frmCreditCard.inputCreditCardCVV.$viewValue.replace(/[^\d]+/g, '');
-				var cvvNumberLength = 3;
 
 				if ($scope.payment.CardType === 'AMEX') {
-					cvvNumberLength = 4;
+					$scope.cvvLength = 4;
+				} else {
+					$scope.cvvLength = 3;
 				}
 
-				$scope.frmCreditCard.inputCreditCardCVV.$setValidity('cvv', (plainNumber.toString().length === cvvNumberLength));
-
+				$scope.frmCreditCard.inputCreditCardCVV.$setValidity('cvv', (plainNumber.toString().length === $scope.cvvLength));
 			}
 
 			// Month dropdown does not have validation so we have to check here
