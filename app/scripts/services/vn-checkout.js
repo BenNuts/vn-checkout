@@ -7,7 +7,7 @@
  */
 
 angular.module('VolusionCheckout.services')
-		.factory('vnCheckout', ['vnSiteConfig', 'vnCart', function (vnSiteConfig, vnCart) {
+		.factory('vnCheckout', ['$rootScope', 'vnSiteConfig', 'vnCart', function ($rootScope, vnSiteConfig, vnCart) {
 
 			'use strict';
 
@@ -24,10 +24,10 @@ angular.module('VolusionCheckout.services')
 						image: IMAGE_US
 					},
 					cart           : {},
-					currentStep    : 2,
+					currentStep    : 1,
 					steps          : [
-						{'active': false},
 						{'active': true},
+						{'active': false},
 						{'active': false}
 					],
 
@@ -101,6 +101,8 @@ angular.module('VolusionCheckout.services')
 			vnSiteConfig.getConfig().then(function (response) {
 				checkout.config = response.data.checkout;
 				checkout.config.PCIaaS = response.data.PCIaaS;
+
+				$rootScope.$emit('PCIaaS.updated');
 			});
 
 			return {

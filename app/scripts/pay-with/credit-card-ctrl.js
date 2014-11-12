@@ -17,7 +17,7 @@ angular.module('VolusionCheckout.controllers')
 
 		function setCreditCardInfo() {
 
-			if ($scope.payment.cardNumber.indexOf('*') !== -1) {
+			if ($scope.payment.cardNumber !== undefined && $scope.payment.cardNumber.indexOf('*') !== -1) {
 				return;
 			}
 
