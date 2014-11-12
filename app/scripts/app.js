@@ -27,14 +27,17 @@ angular
 
 		// Volusion modules
 		'Volusion.toolboxCommon',
+		'VolusionCheckout.config',
 		'VolusionCheckout.controllers',
 		'VolusionCheckout.services',
 		'VolusionCheckout.directives'
 	])
-	.config(['$routeProvider', '$locationProvider',
-		function ($routeProvider, $locationProvider) {
+	.config(['$routeProvider', '$locationProvider', '$compileProvider',
+		function ($routeProvider, $locationProvider, $compileProvider) {
 
 			'use strict';
+
+			$compileProvider.debugInfoEnabled(true);
 
 			$locationProvider.html5Mode(true);
 

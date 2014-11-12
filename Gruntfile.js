@@ -9,9 +9,13 @@
 
 var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest,
 	modRewrite   = require('connect-modrewrite'),
-	appConfig = {
+	appConfig    = {
 		app : 'app',
 		dist: 'dist'
+	},
+	PCIaaS       = {
+		urlTestEnv: 'payments-qa.dev.volusion.com',
+		urlProdEnv: 'pmts.volusion.com'
 	};
 
 module.exports = function (grunt) {
@@ -22,17 +26,57 @@ module.exports = function (grunt) {
 	// Time how long tasks take. Can help when optimizing build times
 	require('time-grunt')(grunt);
 
-	// Configurable paths for the application
-//	var appConfig = {
-//		app : require('./bower.json').appPath || 'app',
-//		dist: 'dist'
-//	};
-
 	// Define the configuration for all the tasks
 	grunt.initConfig({
 
 		// Project settings
 		yeoman       : appConfig,
+
+		// Environment variables
+		ngconstant   : {
+			// Options for all targets
+			options    : {
+				space: '  ',
+				wrap : '\'use strict\';\n\n {%= __ngModule %}',
+				name : 'VolusionCheckout.config'
+			},
+			// Environment targets
+			// see "BUILD" task to add additional targets
+			samplestore: {
+				options  : {
+					dest: '<%= yeoman.app %>/scripts/config.js'
+				},
+				constants: {
+					ENV: {
+						name      : 'samplestore',
+						MerchantId: '3de067d8d96d407697da4a9559f99681',
+						path      : '<%= grunt.option(\'PCIaaS.url\') %>'
+					}
+				}
+			},
+			mybox      : {
+				options  : {
+					dest: '<%= yeoman.app %>/scripts/config.js'
+				},
+				constants: {
+					ENV: {
+						name      : 'mybox',
+						MerchantId: ''
+					}
+				}
+			},
+			production : {
+				options  : {
+					dest: '<%= yeoman.app %>/scripts/config.js'
+				},
+				constants: {
+					ENV: {
+						name      : 'production',
+						MerchantId: ''
+					}
+				}
+			}
+		},
 
 		// Watches files for changes and runs tasks based on the changed files
 		watch        : {
@@ -71,27 +115,36 @@ module.exports = function (grunt) {
 		},
 
 		// The actual grunt server settings
-		connect: {
-			options: {
-				port: 9300,
+		connect      : {
+			options   : {
+				port      : 9300,
 				// Change this to '0.0.0.0' to access the server from outside.
-				hostname: 'localhost',
+				hostname  : 'localhost',
 				livereload: 35730
 			},
-			rules: [
-				{ from: '^/(bower_components|fonts|images|scripts|styles|translations|views)(/.*)$', to: '/$1$2' },
-				{ from: '^/404.html', to: '/404.html' },
-				{ from: '^/(.*)$', to: '/index.html' }
+			rules     : [
+				{
+					from: '^/(bower_components|fonts|images|scripts|styles|translations|views)(/.*)$',
+					to  : '/$1$2'
+				},
+				{
+					from: '^/404.html',
+					to  : '/404.html'
+				},
+				{
+					from: '^/(.*)$',
+					to  : '/index.html'
+				}
 			],
 			livereload: {
 				options: {
-					open: true,
+					open      : true,
 					middleware: function (connect) {
 						return [
 							proxySnippet,
 							modRewrite([
-								'^/paymentsv1_4/cards/(.*)$ https://payments-qa.dev.volusion.com/paymentsv1_4/cards/$1 [P]',
-								'^/paymentsv1_4/cards$ https://payments-qa.dev.volusion.com/paymentsv1_4/cards [P]',
+								'^/paymentsv1_4/cards/(.*)$ https://' + grunt.option('PCIaaS.url') + '/paymentsv1_4/cards/$1 [P]',
+								'^/paymentsv1_4/cards$ https://' + grunt.option('PCIaaS.url') + '/paymentsv1_4/cards [P]',
 								'^[^\\.]*$ /index.html [L]']),
 							connect.static('.tmp'),
 							connect().use(
@@ -106,14 +159,14 @@ module.exports = function (grunt) {
 			proxies   : [
 				{
 					context     : '/paymentsv1_4/cards/*',
-					host        : 'payments-qa.dev.volusion.com',
+					host        : '<%= grunt.option(\'PCIaaS.url\') %>',
 					port        : 443,
 					https       : true,
 					xforward    : false,
 					changeOrigin: true
 				}
 			],
-			test: {
+			test      : {
 				options: {
 					port: 9301,
 					base: [
@@ -123,7 +176,7 @@ module.exports = function (grunt) {
 					]
 				}
 			},
-			dist: {
+			dist      : {
 				options: {
 					base: '<%= yeoman.dist %>'
 				}
@@ -152,7 +205,7 @@ module.exports = function (grunt) {
 
 		// Empties folders to start fresh
 		clean        : {
-			dist  : {
+			dist     : {
 				files: [{
 					dot: true,
 					src: [
@@ -162,7 +215,17 @@ module.exports = function (grunt) {
 					]
 				}]
 			},
-			server: '.tmp'
+			configure: {
+				files: [
+					{
+						dot: true,
+						src: [
+							'<%= yeoman.app %>/scripts/config.js'
+						]
+					}
+				]
+			},
+			server   : '.tmp'
 		},
 
 		// Add vendor prefixed styles
@@ -193,7 +256,7 @@ module.exports = function (grunt) {
 		},
 
 		// Compiles Sass to CSS and generates necessary files if requested
-		sass        : {
+		sass         : {
 			options: {
 				includePaths: [
 					'bower_components'
@@ -312,20 +375,30 @@ module.exports = function (grunt) {
 		},
 
 		htmlmin   : {
-			dist: {
-				options: {
-					collapseWhitespace       : true,
-					conservativeCollapse     : true,
-					collapseBooleanAttributes: true,
-					removeCommentsFromCDATA  : true,
-					removeOptionalTags       : true
-				},
-				files  : [{
+			options: {
+				collapseWhitespace       : true,
+				conservativeCollapse     : true,
+				collapseBooleanAttributes: true,
+				removeCommentsFromCDATA  : true,
+				removeOptionalTags       : true
+			},
+			dist   : {
+				files: [{
 					expand: true,
 					cwd   : '<%= yeoman.dist %>',
-					src   : ['*.html', 'views/{,*/}*.html'],
+					src   : ['*.html', 'views/{,*/}*.html', 'scripts/{,*/}*.html'],
 					dest  : '<%= yeoman.dist %>'
 				}]
+			},
+			server : {
+				files: [
+					{
+						expand: true,
+						cwd   : '<%= yeoman.app %>',
+						src   : ['*.html', 'views/{,*/}*.html', 'scripts/{,*/}*.html'],
+						dest  : '.tmp'
+					}
+				]
 			}
 		},
 
@@ -409,10 +482,45 @@ module.exports = function (grunt) {
 		}
 	});
 
+	grunt.registerTask('configure', function (target) {
+
+		// Add additional targets according to environment variables
+		if (target === undefined || target === 'undefined' || target === '' || target === 'samplestore') {
+			//default build
+			grunt.option('PCIaaS.url', PCIaaS.urlTestEnv);
+			grunt.log.writeln('**********************************************************************');
+			grunt.log.writeln('PMNT path:' + grunt.option('PCIaaS.url'));
+			grunt.log.writeln('**********************************************************************');
+
+			grunt.task.run(['ngconstant:samplestore']);
+			grunt.log.writeln('**********************************************************************');
+			grunt.log.writeln('TARGET is set to [SAMPLESTORE]');
+			grunt.log.writeln('**********************************************************************');
+		} else {
+			//specific build
+			grunt.option('PCIaaS.url', PCIaaS.urlProdEnv);
+			grunt.log.writeln('**********************************************************************');
+			grunt.log.writeln('PMNT path:' + grunt.option('PCIaaS.url'));
+			grunt.log.writeln('**********************************************************************');
+
+			grunt.task.run(['ngconstant:' + target]);
+			grunt.log.writeln('**********************************************************************');
+			grunt.log.writeln('TARGET is set to [' + target + ']');
+			grunt.log.writeln('**********************************************************************');
+		}
+	});
+
 
 	grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
 		if (target === 'dist') {
 			return grunt.task.run(['build', 'connect:dist:keepalive']);
+		}
+
+		if (!grunt.file.exists('<%= yeoman.dist %>')) {
+			grunt.log.writeln('**********************************************************************');
+			grunt.log.writeln('** DIST folder is missing. Building for default target ...  ');
+			grunt.log.writeln('**********************************************************************');
+			grunt.task.run(['build']);
 		}
 
 		grunt.task.run([
@@ -420,6 +528,7 @@ module.exports = function (grunt) {
 			'wiredep',
 			'concurrent:server',
 			'autoprefixer',
+			'htmlmin:server',
 			'connect:livereload',
 			'watch'
 		]);
@@ -438,26 +547,30 @@ module.exports = function (grunt) {
 		'karma'
 	]);
 
-	grunt.registerTask('build', [
-		'clean:dist',
-		'wiredep',
-		'useminPrepare',
-		'concurrent:dist',
-		'autoprefixer',
-		'concat',
-		'ngAnnotate',
-		'copy:dist',
-		//'cdnify',
-		'cssmin',
-		'uglify',
-		'filerev',
-		'usemin',
-		'htmlmin'
-	]);
+	grunt.registerTask('build', function (target) {
+		grunt.task.run([
+			'clean:dist',
+			'clean:configure',
+			'newer:jshint:all',
+			'configure:' + target,
+			'test',
+			'wiredep',
+			'useminPrepare',
+			'concurrent:dist',
+			'autoprefixer',
+			'concat',
+			'ngAnnotate',
+			'copy:dist',
+			//'cdnify',
+			'cssmin',
+			'uglify',
+			'filerev',
+			'usemin',
+			'htmlmin'
+		]);
+	});
 
 	grunt.registerTask('default', [
-		'newer:jshint',
-		'test',
-		'build'
+		'build:samplestore'		// set your default target
 	]);
 };
