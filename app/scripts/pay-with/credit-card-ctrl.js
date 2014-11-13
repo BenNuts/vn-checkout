@@ -154,7 +154,7 @@ angular.module('VolusionCheckout.controllers')
 				}
 			}
 
-			if ($scope.frmCreditCard.inputCreditCardNumber.$viewValue.indexOf('*') === -1) {
+			if ($scope.frmCreditCard.inputCreditCardCVV.$viewValue.indexOf('*') === -1) {
 				plainNumber = $scope.frmCreditCard.inputCreditCardCVV.$viewValue.replace(/[^\d]+/g, '');
 
 				if ($scope.payment.CardType === 'AMEX') {
