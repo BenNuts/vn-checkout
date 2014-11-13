@@ -38,9 +38,14 @@
 	}
 }
 
-@mixin app-font($name, $weight: normal, $style: normal) {
-	$font-files: inline-font-files( '#{$name}.woff', woff ), font-files( '#{$name}.ttf', truetype, '#{$name}.svg#font', svg );
-	@include font-face($name, $font-files, '#{$name}.eot', $weight, $style);
+@mixin app-font($name, $weight: normal, $style: normal, $path: '../fonts/') {
+	@font-face {
+		font-family: $name;
+		src: url('#{$path}#{$name}.eot');
+		src: url('#{$path}#{$name}.eot?#iefix') format('embedded-opentype'), url('#{$path}#{$name}.woff') format('woff'), url('#{$path}#{$name}.ttf') format('truetype'), url('#{$path}#{$name}.svg#font') format('svg');
+		font-weight: $weight;
+		font-style: $style;
+	}
 }
 
 @mixin input-placeholder {
