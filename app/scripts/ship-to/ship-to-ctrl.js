@@ -18,16 +18,19 @@ angular.module('VolusionCheckout.controllers')
 			$scope.isLocationUS = ($scope.checkout.location.label === US) ? true : false;
 
 			$scope.address = {
-				firstName  : '',
-				lastName   : '',
 				address1   : '',
 				address2   : '',
 				city       : '',
-				state      : '',
-				region     : '',
-				postalCode : '',
+				companyName: '',
 				country    : 'Unites States',
-				phoneNumber: ''
+				firstName  : '',
+				lastName   : '',
+				phoneNumber: '',
+				postalCode : '',
+				//preferred  : false,
+				//residential: true,
+				state      : '',
+				region     : ''
 			};
 
 			$scope.countries = [];
@@ -97,11 +100,8 @@ angular.module('VolusionCheckout.controllers')
 
 				if ($scope.frmShipTo.$valid) {
 
-					// TODO : REMOVE THIS ***********************************************
-					$rootScope.$emit('vnShippingAddress.updated');
-					// TODO : REMOVE THIS ***********************************************
-
 					angular.extend($scope.checkout.cart.shippingAddress, $scope.address);
+					$rootScope.$emit('vnShippingAddress.updated');
 
 					vnCart.updateCart();
 

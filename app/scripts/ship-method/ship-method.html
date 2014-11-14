@@ -12,7 +12,7 @@
 		 data-ng-switch-when="edit"
 		 data-ng-repeat="method in checkout.cart.shippingMethods" >
 
-		<div class="styled-checkbox-option">
+		<div class="styled-optionbox-option">
 			<input type="radio" id="{{ $index }}" name="shipping" value="true"
 				   data-ng-model="method.selected"
 				   data-ng-change="setShippingMethod({{ $index }})" />

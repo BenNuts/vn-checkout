@@ -34,8 +34,8 @@ angular.module('VolusionCheckout.services')
 					/* TODO : set these to false after tests are done. */
 					shipToValid    : false,
 					shipMethodValid: false,
-					billToValid    : true,
-					creditCardValid: true
+					billToValid    : false,
+					creditCardValid: false
 					/***************************************************/
 				};
 
