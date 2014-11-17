@@ -1,4 +1,4 @@
-.styled-checkbox-option {
+.styled-optionbox-option {
 
 	text-align : left;
 
@@ -11,7 +11,7 @@
 			margin    : 0;
 
 			&:before {
-				content        : '\f096';
+				content        : '\f10c';
 				font-family    : 'FontAwesome';
 				font-size      : 16px;
 				display        : inline-block;
@@ -21,9 +21,10 @@
 				vertical-align : middle;
 				text-align     : center;
 				color          : $brand-primary;
-				margin-top     : 2px;
-				margin-left    : 1px;
-				margin-right   : 2px;
+				//border: 1px solid $cg6;
+				//border-radius: 2px;
+				//background: $cg0;
+				margin-right   : 5px;
 				font-weight    : normal;
 			}
 		}
@@ -31,10 +32,8 @@
 		&:checked {
 			+ label {
 				&:before {
-					content     : '\f046';
+					content     : '\f192';
 					font-family : 'FontAwesome';
-					margin-left : 2px;
-					margin-right: 1px;
 					//color: $cg8;
 					//border-color: $colorMain;
 					//background: $colorInfo !important;

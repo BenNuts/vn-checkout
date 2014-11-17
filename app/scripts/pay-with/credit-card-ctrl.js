@@ -17,7 +17,22 @@ angular.module('VolusionCheckout.controllers')
 
 		function setCreditCardInfo() {
 
+			// we have masked value
 			if ($scope.payment.cardNumber !== undefined && $scope.payment.cardNumber.indexOf('*') !== -1) {
+				switch($scope.payment.CardType) {
+					case 'AMEX':
+						$scope.payment.ccCssClass = 'credit-card__image--amex';
+						break;
+					case 'VISA':
+						$scope.payment.ccCssClass = 'credit-card__image--visa';
+						break;
+					case 'MC':
+						$scope.payment.ccCssClass = 'credit-card__image--mastercard';
+						break;
+					default:
+						$scope.payment.ccCssClass = 'credit-card__image--unknown';
+				}
+
 				return;
 			}
 
@@ -48,6 +63,7 @@ angular.module('VolusionCheckout.controllers')
 		}
 
 		$scope.checkout = vnCheckout.get();
+		$scope.payment = vnPayment.getCard();
 
 		$scope.months = [
 			{ num: '01', label: '01 - January' },
@@ -74,21 +90,6 @@ angular.module('VolusionCheckout.controllers')
 			}
 			return ret;
 		};
-
-		$scope.payment = vnPayment.getCard();
-
-		/*$scope.payment = {
-			ccNumber       : '4111111111111111',
-			ccCvv          : '123',
-			ExpireMonth     : '08',
-			ExpireYear      : '17',
-			ccHolderName   : '',
-
-			// for display purposes
-			ccDisplayNumber: '',
-			CardType         : '',
-			ccCssClass     : 'credit-card__image--notvalid'
-		};*/
 
 		$scope.isEditable = function () {
 			return ($scope.checkout.currentStep === PAY_WITH) ? 'edit' : 'show';
@@ -197,15 +198,6 @@ angular.module('VolusionCheckout.controllers')
 			vnCheckout.setCreditCardValidity($scope.frmCreditCard.$valid);
 
 			if ($scope.frmCreditCard.$valid) {
-
-				// Call Volusion's payment service
-				//vnPayment.setPersistCard(true);
-				//vnPayment.setCardHolderName($scope.payment.ccHolderName);
-				//vnPayment.setCardNumber($scope.payment.cardNumber);
-				//vnPayment.setCvv($scope.payment.ccCvv);
-				//vnPayment.setExpireMonth($scope.payment.ExpireMonth);
-				//vnPayment.setExpireYear($scope.payment.ExpireYear);
-				//vnPayment.setCardType($scope.payment.CardType);
 
 				vnPayment.process();
 			}

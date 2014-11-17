@@ -85,7 +85,7 @@ module.exports = function (grunt) {
 				tasks: ['wiredep']
 			},
 			html: {
-				files: ['<%= yeoman.app %>/*.html', '<%= yeoman.app %>/views/**/*.html'],
+				files: ['<%= yeoman.app %>/*.html', '<%= yeoman.app %>/views/**/*.html', '<%= yeoman.app %>/scripts/**/*.html'],
 				tasks: ['htmlmin:server'],
 				options: {
 					livereload: '<%= connect.options.livereload %>'
@@ -386,8 +386,9 @@ module.exports = function (grunt) {
 				collapseWhitespace       : true,
 				conservativeCollapse     : true,
 				collapseBooleanAttributes: true,
-				removeCommentsFromCDATA  : true,
-				removeOptionalTags       : true
+				removeCommentsFromCDATA  : true//,
+				// this option breaks livereload if used
+				//removeOptionalTags       : true
 			},
 			dist   : {
 				files: [{

@@ -136,4 +136,13 @@ angular.module('VolusionCheckout.controllers')
 				}
 			};
 
+			$scope.$watch('checkout.cart.shippingAddress', function () {
+
+				if ($scope.checkout.cart.shippingAddress === undefined || $scope.checkout.cart.shippingAddress.address1 === '') {
+					return;
+				}
+
+				$scope.shippingAddress = $scope.checkout.cart.shippingAddress;
+			});
+
 		}]);

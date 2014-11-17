@@ -1,12 +1,5 @@
-angular.module('Volusion.toolboxCommon')
-		/*.config(function ($httpProvider) {
-
-			'use strict';
-
-			$httpProvider.defaults.useXDomain = true;
-			delete $httpProvider.defaults.headers.common['X-Requested-With'];
-		})
-		*/.factory('vnPCIaaS', ['$resource',
+angular.module('VolusionCheckout.services')
+		.factory('vnPCIaaS', ['$resource',
 			function ($resource) {
 				'use strict';
 
