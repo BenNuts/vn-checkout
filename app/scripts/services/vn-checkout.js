@@ -92,6 +92,10 @@ angular.module('VolusionCheckout.services')
 				}
 			}
 
+			function setPaymentProfile(payment) {
+				vnCart.setPaymentProfile(payment);
+			}
+
 			vnCart.initWithPromise()
 					.then(function (response) {
 						checkout.cart = response.data;
@@ -112,6 +116,7 @@ angular.module('VolusionCheckout.services')
 				setStep              : setStep,
 				setCreditCardValidity: setCreditCardValidity,
 				setBillToValidity    : setBillToValidity,
+				setPaymentProfile    : setPaymentProfile,
 				setShipToValidity    : setShipToValidity,
 				setShipMethodValidity: setShipMethodValidity,
 				toggleLocation       : toggleLocation
