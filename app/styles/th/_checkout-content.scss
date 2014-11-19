@@ -11,6 +11,21 @@
 }
 */
 
+html, body {
+	height: 100%;
+}
+
+.vn-placeholder {
+	top: 14px;
+	font-size: 14px;
+
+	&.-selected {
+		font-size: 11px;
+		left: 12px;
+		color: #999;
+	}
+}
+
 .th-checkout-content {
 
 	.col-md-4 {
@@ -32,14 +47,13 @@
 
 .th-checkout {
 	&__step {
-		height     : 530px;
-		text-align : center;
-		@include opacity(0.3);
-		background-color : $gray-lighter;
+		color: $gray-dark;
+		padding: 10px 20px;
+		height: 600px;
 
 		&.-active {
 			border : none;
-			@include opacity(1.0);
+			background-color: white;
 
 			.th-checkout__step__overlay {
 				display : none;
@@ -51,16 +65,17 @@
 		}
 
 		&__overlay {
-			display: none;
-			/*
 			z-index          : 999;
 			position         : absolute;
 			height           : 100%;
 			width            : 100%;
-			background-color : $gray;
+			background-color : $gray-lighter;
+			top: 0px;
+			bottom: 0px;
+			left: 0px;
+			right: 0px;
 
-			@include opacity(0.2);
-			*/
+			@include opacity(0.7);
 		}
 
 		&__edit {
@@ -76,13 +91,40 @@
 		}
 
 		&__title {
-			text-align : center;
+			&__stepNumber {
+				color: $gray-light;
+			}
+
+			&__stepName {
+				display: block;
+				font-weight: bold;
+				font-size: 2.4rem;
+				text-align: center;
+				text-transform: uppercase;
+			}
+		}
+
+		.form-group {
+			margin-bottom: 20px;
+
+			.form-control {
+				border-bottom: 1px solid #ddd;
+				font-size: 1.6rem;
+
+				&.btn-lg {
+					height: 42px;
+				}
+			}
+		}
+
+		.th-dropdown .dropdown-toggle .caret {
+			right: 4px;
+			top: 18px;
 		}
 
 	}
 
 	&__ship-to {
-		padding : 15px;
 
 		.dropdown-menu {
 			min-width : 150px;
@@ -90,31 +132,19 @@
 		}
 
 		&__display {
-			text-align : left;
 		}
 
 		&__location {
 			text-align : center;
-			padding    : 10px;
+			padding    : 20px 0px 35px 0px;
 
-			&--link {
-				height            : 20px;
-				display           : block;
-				background-repeat : no-repeat;
-				margin            : 0 auto;
-
-				&.-us {
-					background-image : url('/images/us-flag.png');
-					width            : 35px;
-					background-size  : 35px 20px;
-				}
-
-				&.-worldwide {
-					background-image : url('/images/worldwide-flag.png');
-					width            : 20px;
-					background-size  : 20px 20px;
-				}
-			}
+//			.btn.btn-default {
+//				color: $gray-dark;
+//			}
+//
+//			.btn {
+//				color: white;
+//			}
 		}
 
 		&__country {

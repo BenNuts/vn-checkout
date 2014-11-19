@@ -2,9 +2,10 @@
 <div class="th-checkout__ship-to" data-ng-controller="ShipToCtrl" data-ng-switch="isEditable()">
 
 	<div class="th-checkout__ship-to__location" data-ng-switch-when="edit">
-		<a href data-ng-click="toggleLocation()" class="th-checkout__ship-to__location--link" data-ng-class="{ '-us': isLocationUS, '-worldwide' : !isLocationUS }">
-			&nbsp;
-		</a>
+		<div class="btn-group">
+			<button type="button" data-ng-click="toggleLocation()" class="btn btn-default" data-ng-class="{ 'btn-primary' : isLocationUS }">United States</button>
+			<button type="button" data-ng-click="toggleLocation()" class="btn btn-default" data-ng-class="{ 'btn-primary': !isLocationUS }">International</button>
+		</div>
 	</div>
 
 	<div class="th-checkout__ship-to__display" data-ng-switch-when="show">
@@ -37,7 +38,7 @@
 				<div class="col-xs-6">
 					<div class="form-group">
 						<input type="text"
-							   id="inputShipToUSFirstName" class="form-control immediate-help"
+							   id="inputShipToUSFirstName" class="form-control input-lg immediate-help"
 							   data-vn-placeholder="First Name"
 							   data-ng-model="address.firstName"
 							   data-ng-blur="updateShippingAddress()"
@@ -55,7 +56,7 @@
 				<div class="col-xs-6">
 					<div class="form-group">
 						<input type="text" id="inputShipToUSLastName"
-							   class="form-control -right immediate-help"
+							   class="form-control input-lg -right immediate-help"
 							   data-vn-placeholder="Last Name"
 							   data-ng-model="address.lastName"
 							   data-ng-blur="updateShippingAddress()"
@@ -75,9 +76,8 @@
 				<div class="col-xs-12">
 					<div class="form-group">
 						<input type="text" id="inputShipToUSAddressaddress1"
-							   class="form-control immediate-help"
+							   class="form-control input-lg immediate-help"
 							   data-vn-placeholder="Address Line 1"
-							   data-vn-placeholder-short="Address"
 							   data-ng-model="address.address1"
 							   data-ng-blur="updateShippingAddress()"
 							   data-vn-street-validate required />
@@ -96,7 +96,7 @@
 				<div class="col-xs-12">
 					<div class="form-group">
 						<input type="text" id="inputShipToUSAddressLine2"
-							   class="form-control"
+							   class="form-control input-lg"
 							   data-vn-placeholder="Address Line 2"
 							   data-ng-model="address.address2"/>
 					</div>
@@ -106,7 +106,7 @@
 				<div class="col-xs-5">
 					<div class="form-group">
 						<input type="text" id="inputShipToUSCity"
-							   class="form-control immediate-help"
+							   class="form-control input-lg immediate-help"
 							   data-vn-placeholder="City"
 							   data-ng-model="address.city"
 							   data-ng-blur="updateShippingAddress()"
@@ -122,10 +122,10 @@
 					</div>
 				</div>
 				<div class="col-xs-3">
-					<div class="form-group">
-						<div class="th-checkout__ship-to__state th-dropdown">
+					<div class="th-checkout__ship-to__state th-dropdown">
+						<div class="form-group">
 							<button id="inputShipToUSState" name="inputShipToUSState"
-									class="btn btn-default dropdown-toggle form-control"
+									class="btn btn-default btn-lg dropdown-toggle form-control"
 									data-toggle="dropdown"
 									data-ng-class="{ 'ng-invalid': address.state === '', 'ng-valid': stateEmpty === 'valid' }"
 									data-vn-placeholder="State"
@@ -158,7 +158,7 @@
 				<div class="col-xs-4">
 					<div class="form-group">
 						<input type="text" id="inputShipToUSZip" name="inputShipToUSZip"
-							   class="form-control immediate-help"
+							   class="form-control input-lg immediate-help"
 							   data-vn-placeholder="Zip"
 							   data-ng-blur="updateShippingAddress('zip')"
 							   data-ng-model="address.postalCode"
@@ -178,7 +178,7 @@
 					<div class="form-group">
 						<label class="control-label sr-only" for="inputShipToWorldwideCity"></label>
 						<input type="text" id="inputShipToWorldwideCity"
-							   class="form-control"
+							   class="form-control input-lg"
 							   data-vn-placeholder="City"
 							   data-ng-model="address.city"/>
 					</div>
@@ -189,7 +189,7 @@
 					<div class="form-group">
 						<label class="control-label sr-only" for="inputShipToWorldwideRegion"></label>
 						<input type="text" id="inputShipToWorldwideRegion"
-							   class="form-control"
+							   class="form-control input-lg"
 							   data-vn-placeholder="Region"
 							   data-ng-model="address.region"/>
 					</div>
@@ -198,7 +198,7 @@
 					<div class="form-group">
 						<label class="control-label sr-only" for="inputShipToWorldwidePostalCode"></label>
 						<input type="text" id="inputShipToWorldwidePostalCode"
-							   class="form-control"
+							   class="form-control input-lg"
 							   data-vn-placeholder="Postal code"
 							   data-ng-model="address.postalCode"/>
 					</div>
@@ -209,7 +209,7 @@
 					<div class="form-group">
 						<div class="th-checkout__ship-to__country th-dropdown">
 							<button id="inputShipToWorldwideCountry" name="inputShipToWorldwideCountry"
-									class="btn btn-default dropdown-toggle form-control"
+									class="btn btn-lg btn-default dropdown-toggle form-control"
 									data-toggle="dropdown"
 									data-vn-placeholder="Country"
 									data-ng-model="address.country"
@@ -232,13 +232,12 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="row" data-ng-switch-when="edit">
 				<div class="col-xs-12">
 					<div class="form-group">
 						<label class="control-label sr-only" for="inputShipToUSPhoneNumber"></label>
 						<input type="text" id="inputShipToUSPhoneNumber"
-							   class="form-control"
+							   class="form-control input-lg"
 							   data-vn-placeholder="Phone Number"
 							   data-ng-model="address.phoneNumber"
 							   data-ng-blur="updateShippingAddress()"

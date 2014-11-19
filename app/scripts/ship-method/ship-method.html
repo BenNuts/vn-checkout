@@ -1,10 +1,7 @@
 <div class="th-checkout__ship-method" data-ng-controller="ShipMethodCtrl" data-ng-switch="isEditable()">
-	<div data-ng-show="checkout.cart.shippingMethods.length == 0"
+	<div class="th-checkout__ship-method__seeRates" data-ng-show="checkout.cart.shippingMethods.length == 0"
 		 data-ng-switch-when="edit" >
-
-		<hr />
 		Enter address to see rates.
-		<hr />
 	</div>
 
 	<div class="th-checkout__ship-method__method"
@@ -19,8 +16,6 @@
 			<label for="{{ $index }}" >&nbsp;&nbsp;{{ method.name }}</label>
 		</div>
 		<div class="th-checkout__ship-method__price">{{ method.price | vnCurrency }}</div>
-
-		<hr />
 
 	</div>
 

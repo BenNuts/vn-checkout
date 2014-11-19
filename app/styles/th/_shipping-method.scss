@@ -1,9 +1,14 @@
 .th-checkout__ship-method {
-	text-align : left;
-	padding    : 0 25px;
+
+	&__seeRates {
+		border: 1px dashed #ddd;
+		padding: 20px 10px;
+		margin-bottom: 20px;
+	}
 
 	&__method {
 		position : relative;
+		margin-bottom: 20px;
 	}
 
 	&__price {

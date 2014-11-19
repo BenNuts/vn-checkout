@@ -22,7 +22,7 @@ angular.module('VolusionCheckout.controllers')
 				address2   : '',
 				city       : '',
 				companyName: '',
-				country    : 'Unites States',
+				country    : 'United States',
 				firstName  : '',
 				lastName   : '',
 				phoneNumber: '',
