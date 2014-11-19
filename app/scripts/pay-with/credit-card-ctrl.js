@@ -200,6 +200,8 @@ angular.module('VolusionCheckout.controllers')
 			if ($scope.frmCreditCard.$valid) {
 
 				vnPayment.process();
+
+				vnCheckout.setPaymentProfile($scope.payment);
 			}
 		};
 
