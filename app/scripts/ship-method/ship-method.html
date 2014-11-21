@@ -19,14 +19,9 @@
 
 	</div>
 
-	<div class="th-checkout__ship-method__display"
-		 data-ng-switch-when="show" >
-
-		<hr />
+	<div class="th-checkout__ship-method__display" data-ng-switch-when="show">
 		<div class="th-checkout__ship-method__display__name">{{ checkout.cart.shippingMethods[currentShippingMethodIdx].name }}</div>
 		<div class="th-checkout__ship-method__display__price">{{ checkout.cart.shippingMethods[currentShippingMethodIdx].price | vnCurrency }}</div>
-		<br style="clear: both;">
-		<hr />
 
 	</div>
 

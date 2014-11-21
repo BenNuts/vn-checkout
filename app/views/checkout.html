@@ -1,16 +1,17 @@
 <div class="th-checkout-content">
 	<div class="row">
 		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[0].active }" data-ng-switch="isEditable(1)">
-			<div class="th-checkout__step__overlay"></div>
-			<a href class="th-checkout__step__edit"
-			   data-ng-if="checkout.steps[1].active || checkout.steps[2].active"
-			   data-ng-click="setStep(1)">
-				Edit
+			<div class="th-checkout__step__overlay" data-ng-class="{ '-complete' : checkout.steps[1].active || checkout.steps[2].active}" data-ng-click="setStep(1)">
+			</div>
+			<a href class="th-checkout__step__edit" data-ng-if="checkout.steps[1].active || checkout.steps[2].active">
+				<i class="fa fa-check-circle-o fa-4x"></i>
+				<i class="fa fa-pencil fa-4x"></i>
 			</a>
 
+
 			<div class="th-checkout__step__title">
-				<span class="th-checkout__step__title__stepNumber"></span>
-				<span class="th-checkout__step__title__stepName">Ship To</span>
+				<div class="th-checkout__step__title__stepNumber"><span>1</span></div>
+				<div class="th-checkout__step__title__stepName">Ship To</div>
 			</div>
 
 			<div ng-include=" 'scripts/ship-to/ship-to.html' "></div>
@@ -27,47 +28,50 @@
 
 		</div>
 		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[1].active }" data-ng-switch="isEditable(2)">
-			<div class="th-checkout__step__overlay"></div>
-			<a href class="th-checkout__step__edit"
-			   data-ng-if="checkout.steps[2].active"
-			   data-ng-click="setStep(2)">
-				Edit
+			<div class="th-checkout__step__overlay" data-ng-class="{ '-complete' : checkout.steps[2].active}" data-ng-click="setStep(2)"></div>
+			<a href class="th-checkout__step__edit" data-ng-if="checkout.steps[2].active">
+				<i class="fa fa-check-circle-o fa-4x"></i>
+				<i class="fa fa-pencil fa-4x"></i>
 			</a>
 
 			<div class="th-checkout__step__title">
-				<span class="th-checkout__step__title__stepNumber"></span>
-				<span class="th-checkout__step__title__stepName">Pay With</span>
+				<div class="th-checkout__step__title__stepNumber"><span>2</span></div>
+				<div class="th-checkout__step__title__stepName">Pay With</div>
 			</div>
 
 			<div ng-include=" 'scripts/pay-with/credit-card.html' "></div>
 
 			<div ng-include=" 'scripts/billing-address/billing-address.html' "></div>
 
-			<button class="btn btn-primary"
-					data-ng-if="checkout.steps[1].active"
-					data-ng-click="prevStep()">
-
-				<i class="fa fa-angle-left">&nbsp;Back</i>
-			</button>
-
-			<button class="btn btn-primary"
-					data-ng-if="checkout.steps[1].active"
-					data-ng-click="nextStep()"
-					data-ng-disabled="getCreditCardValid() || getBillingAddressValid()">
-
-					Continue&nbsp;<i class="fa fa-angle-right"></i>
-			</button>
+			<div class="row">
+				<div class="col-sm-6">
+					<button class="btn btn-block btn-lg"
+							data-ng-if="checkout.steps[1].active"
+							data-ng-click="prevStep()">
+						<i class="fa fa-angle-left">&nbsp;Back</i>
+					</button>
+				</div>
+				<div class="col-sm-6">
+					<button class="btn btn-primary btn-block btn-lg"
+							data-ng-if="checkout.steps[1].active"
+							data-ng-click="nextStep()"
+							data-ng-disabled="getCreditCardValid() || getBillingAddressValid()">
+						Continue&nbsp;<i class="fa fa-angle-right"></i>
+					</button>
+				</div>
+			</div>
 		</div>
 		<div class="col-md-4 th-checkout__step" data-ng-class="{ '-active' : checkout.steps[2].active }">
 			<div class="th-checkout__step__overlay"></div>
+
 			<div class="th-checkout__step__title">
-				<span class="th-checkout__step__title__stepNumber"></span>
-				<span class="th-checkout__step__title__stepName">Review</span>
+				<div class="th-checkout__step__title__stepNumber"><span>3</span></div>
+				<div class="th-checkout__step__title__stepName">Review</div>
 			</div>
 
 			<div ng-include=" 'scripts/review/review.html' "></div>
 
-			<button class="btn btn-primary"
+			<button class="btn btn-primary btn-block btn-lg"
 					data-ng-if="checkout.steps[2].active"
 					data-ng-click="setOrder()" >
 

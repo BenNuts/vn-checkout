@@ -11,16 +11,16 @@
 	<div class="th-checkout__ship-to__display" data-ng-switch-when="show">
 		<div class="row">
 			<div class="col-xs-12">
-				<div>{{ address.firstName }}&nbsp;{{ address.lastName }}</div>
-				<div>{{ address.address1 }}</div>
-				<div data-ng-if="address.address2 != ''">{{ address.address2 }}</div>
-				<div data-ng-show="isLocationUS">{{ address.city }},&nbsp;{{ address.state }}&nbsp;{{ address.postalCode }}</div>
+				<div class="th-checkout__ship-to__display__addressPart">{{ address.firstName }}&nbsp;{{ address.lastName }}</div>
+				<div class="th-checkout__ship-to__display__addressPart">{{ address.address1 }}</div>
+				<div class="th-checkout__ship-to__display__addressPart" data-ng-if="address.address2 != ''">{{ address.address2 }}</div>
+				<div class="th-checkout__ship-to__display__addressPart" data-ng-show="isLocationUS">{{ address.city }},&nbsp;{{ address.state }}&nbsp;{{ address.postalCode }}</div>
 				<div class="row" data-ng-show="!isLocationUS">
-					<div>{{ address.city }}</div>
-					<div>{{ address.region }}&nbsp;{{ address.postalCode }}</div>
-					<div>{{ address.country }}</div>
+					<div class="th-checkout__ship-to__display__addressPart">{{ address.city }}</div>
+					<div class="th-checkout__ship-to__display__addressPart">{{ address.region }}&nbsp;{{ address.postalCode }}</div>
+					<div class="th-checkout__ship-to__display__addressPart">{{ address.country }}</div>
 				</div>
-				<div>{{ address.phoneNumber }}</div>
+				<div class="th-checkout__ship-to__display__addressPart">{{ address.phoneNumber }}</div>
 			</div>
 		</div>
 	</div>

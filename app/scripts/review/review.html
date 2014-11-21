@@ -1,11 +1,9 @@
 <div class="th-checkout__review" data-ng-controller="ReviewCtrl">
 
-	<div class="review__totals">
+	<div class="review__totals clearfix">
 		<div class="review__totals__count">{{ checkout.cart.totals.qty }} item(s)</div>
 		<div class="review__totals__expand"><button data-ng-click="reviewItems = !reviewItems"><span></span></button></div>
 		<div class="review__totals__amount">{{ checkout.cart.totals.items | currency }}</div>
-
-		<br style="clear : both;">
 	</div>
 
 	<div class="review__items" data-ng-show="reviewItems">
@@ -46,8 +44,6 @@
 					<span>Message:</span>&nbsp;"{{ item.giftWrap.message }}"
 				</div>
 			</div>
-
-			<br style="clear: both;" />
 		</div>
 	</div>
 

@@ -4,26 +4,7 @@
 
 	&__location {
 		text-align : center;
-		padding    : 10px;
-
-		&--link {
-			height            : 20px;
-			display           : block;
-			background-repeat : no-repeat;
-			margin            : 0 auto;
-
-			&.-us {
-				background-image : url('/images/us-flag.png');
-				width            : 35px;
-				background-size  : 35px 20px;
-			}
-
-			&.-worldwide {
-				background-image : url('/images/worldwide-flag.png');
-				width            : 20px;
-				background-size  : 20px 20px;
-			}
-		}
+		padding    : 20px 0px 35px 0px;
 	}
 
 	&__country {
@@ -37,5 +18,15 @@
 
 	&__state {
 		position : relative;
+	}
+
+	&__display {
+		padding: 10px 10px 0px 10px;
+		border-radius: 5px;
+		background-color: $gray-lighter;
+
+		&__addressPart {
+			margin-bottom: 10px;
+		}
 	}
 }
